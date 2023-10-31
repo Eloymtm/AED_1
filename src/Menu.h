@@ -7,17 +7,21 @@
 #include <fstream>
 #include <sstream>
 #include "Student.h"
+#include <list>
 using namespace std;
 class Menu {
 public:
     void mainMenu();
     void run();
+    void MenuUC();
     void MenuStudents();
     void readStudents();
     void MenuTurmas();
     void readTurmas();
+    void readUC();
     vector<pair<UC,Class>> classuc;
     vector<Student> student;
+    set<UC> ucs;
 };
 
 

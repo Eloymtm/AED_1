@@ -9,6 +9,7 @@ class UC{
 public:
     std::string uCode;
     UC(std::string uCode);
+    std::string getUC();
     friend std::ostream& operator<<(std::ostream& os, const UC& uc);
 
 };

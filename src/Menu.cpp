@@ -26,10 +26,6 @@ void Menu::mainMenu(){
         cout << "Your option:\n";
         cin >> opção;
 
-
-    bool rodando = true;
-    while(rodando){
-
         switch(opção){
 
             case 1:
@@ -39,13 +35,12 @@ void Menu::mainMenu(){
                 MenuTurmas();
                 break;
             case 3:
-                //MenuUC();
+                MenuUC();
                 break;
             case 4:
                 //Request();
                 break;
             case 5:
-                rodando = false;
                 language = 1;
                 break;
 
@@ -74,7 +69,7 @@ void Menu::mainMenu(){
         if(language == 1){*/
 
        // }
-    }
+
     void Menu::MenuStudents() {
         cout << "__________________________________________\n";
         cout << "|              StudentsMenu              |\n";
@@ -82,7 +77,6 @@ void Menu::mainMenu(){
         readStudents();
     }
     void Menu::readStudents(){
-        set<string> students;
         ifstream input("../input/students_classes.csv");
         if(!input.is_open()){
             perror("Error opening file");
@@ -110,14 +104,14 @@ void Menu::mainMenu(){
     }
     void Menu::MenuTurmas(){
         cout << "__________________________________________\n";
-        cout << "|              StudentsMenu              |\n";
+        cout << "|              ClassesMenu               |\n";
         cout << "|________________________________________|\n";
         readTurmas();
 
 }
         void Menu::readTurmas(){
                 vector<pair<UC,Class>> classuc;
-                vector<Slot> slots;
+                vector<Slot> schedule;
                 ifstream input("../input/classes.csv");
                 if(!input.is_open()){
                     cout << "Error: Unable to open file 1 \n";
@@ -130,6 +124,7 @@ void Menu::mainMenu(){
                     getline(in,classCode, ',');
                     getline(in, ucCode, ',');
                     getline(in, weekday, ',');
+                    getline(in,start,',');
                     getline(in, duration, ',');
                     getline(in, type, ',');
 
@@ -137,14 +132,42 @@ void Menu::mainMenu(){
                     Class c1 = Class(classCode);
                     pair<UC,Class> copy = Student::createpair(u1, c1);
                     classuc.push_back(copy);
-                    Slot slot = Slot(weekday, start,duration,type);
-                    slots.push_back(slot);
+                    Slot slot = Slot(weekday,start,duration,type);
+                    schedule.push_back(slot);
                 }
                 for (auto x: classuc){
                     cout << x.first << " " << x.second <<endl;
                 }
-                for (auto y: slots){
+                for (auto y: schedule){
                     cout << y.getweekday() << y.getstart() << y.getduration() << y.gettype() << endl;
                 }
                 input.close();
             }
+    void Menu::MenuUC(){
+        cout << "__________________________________________\n";
+        cout << "|                 UCMenu                 |\n";
+        cout << "|________________________________________|\n";
+        readUC();
+    }
+    void Menu::readUC(){
+        list<UC> ucs;
+        ifstream input("../input/classes_per_uc.csv");
+        if(!input.is_open())
+            cout << "Error: Unable to open file 3 \n";
+        string line;
+        getline (input, line);
+        while(getline(input, line)){
+            istringstream in (line);
+            string classCode, ucCode;
+            getline(in,classCode,',');
+            getline(in, ucCode, ',');
+
+            UC u = UC(ucCode);
+            ucs.push_back(u);
+        }
+        for (auto x: ucs){
+            cout << x << endl;
+        }
+        input.close();
+
+}
