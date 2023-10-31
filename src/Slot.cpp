@@ -2,11 +2,15 @@
 
 using namespace std;
 
-Slot::Slot(string weekday,string start,string duration, string type) {
+Slot::Slot(string ccode, string weekday,string start,string duration, string type) {
+    this->ccode = ccode;
     this->weekday = weekday;
     this->start = start;
     this->duration = duration;
     this->type = type;
+}
+string Slot::getccode() {
+    return this->ccode;
 }
 string Slot::getweekday(){
     return this->weekday;
