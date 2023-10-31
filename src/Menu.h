@@ -7,6 +7,8 @@
 #include <fstream>
 #include <sstream>
 #include "Student.h"
+#include "Slot.h"
+#include "Schedule.h"
 #include <list>
 using namespace std;
 class Menu {
