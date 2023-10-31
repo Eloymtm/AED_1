@@ -67,6 +67,12 @@ build CMakeFiles/untitled.dir/src/Student.cpp.o: CXX_COMPILER__untitled_unscanne
   OBJECT_DIR = CMakeFiles/untitled.dir
   OBJECT_FILE_DIR = CMakeFiles/untitled.dir/src
 
+build CMakeFiles/untitled.dir/src/Slot.cpp.o: CXX_COMPILER__untitled_unscanned_Debug /home/eloy_mm2004/Desktop/Horarioprog/untitled/src/Slot.cpp || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles/untitled.dir/src/Slot.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles/untitled.dir/src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target untitled
@@ -75,7 +81,7 @@ build CMakeFiles/untitled.dir/src/Student.cpp.o: CXX_COMPILER__untitled_unscanne
 #############################################
 # Link the executable untitled
 
-build untitled: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/src/main.cpp.o CMakeFiles/untitled.dir/src/Menu.cpp.o CMakeFiles/untitled.dir/src/Student.cpp.o
+build untitled: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/src/main.cpp.o CMakeFiles/untitled.dir/src/Menu.cpp.o CMakeFiles/untitled.dir/src/Student.cpp.o CMakeFiles/untitled.dir/src/Slot.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/untitled.dir
   POST_BUILD = :
