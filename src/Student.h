@@ -17,6 +17,7 @@ class Class{
 public:
     std::string classCode;
     Class(std::string classCode);
+    std::string getclassCode();
     friend std::ostream& operator<<(std::ostream& os, const Class& c);
 };
 
