@@ -12,6 +12,9 @@ UC::UC(std::string uCode) {
 Class::Class(std::string classCode) {
     this->classCode = classCode;
 }
+string Class::getclassCode() {
+    return this->classCode;
+}
 string Student::getname(){
     return this->name;
 }
