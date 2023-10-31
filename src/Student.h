@@ -32,21 +32,6 @@ public:
     static std::pair<UC,Class> createpair(UC u1, Class c1);
     //std::vector<std::Slot> schedule;
 };
-class Slot{
-public:
-    Slot(std::string weekday,std::string start, std::string duration,std::string type);
-    std::vector<Slot> schedule;
-
-    std::string getweekday();
-    std::string getstart();
-    std::string getduration();
-    std::string gettype();
-    std::string weekday;
-    std::string start;
-    std::string duration;
-    std::string type;
-};
-
 
 
 #endif //UNTITLED_STUDENT_H
