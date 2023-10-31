@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.26)
+project(untitled)
+
+set(CMAKE_CXX_STANDARD 17)
+
+add_executable(untitled src/main.cpp
+        src/Menu.cpp
+        src/Menu.h
+        src/Student.cpp
+        src/Student.h)
