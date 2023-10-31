@@ -132,15 +132,19 @@ void Menu::mainMenu(){
                     Class c1 = Class(classCode);
                     pair<UC,Class> copy = Student::createpair(u1, c1);
                     classuc.push_back(copy);
-                    Slot slot = Slot(weekday,start,duration,type);
+                    Slot slot = Slot(classCode, weekday,start,duration,type);
                     schedule.push_back(slot);
                 }
+                string cl;
+                cin >> cl;
+                Schedule::createvector(classuc, schedule, cl);
+                /*
                 for (auto x: classuc){
                     cout << x.first << " " << x.second <<endl;
                 }
                 for (auto y: schedule){
                     cout << y.getweekday() << y.getstart() << y.getduration() << y.gettype() << endl;
-                }
+                }*/
                 input.close();
             }
     void Menu::MenuUC(){
