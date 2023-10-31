@@ -29,8 +29,7 @@ void Schedule::createvector(vector<std::pair<UC, Class>> classuc, vector<Slot> s
         if(x.second.getclassCode() == cl) {
             for (auto y: schedule) {
                 if (y.getccode() == cl) {
-                    Schedule sch = Schedule(x.first.getuCode(), y.getweekday(), y.getstart(), y.getduration(),
-                                            y.gettype());
+                    Schedule sch = Schedule(x.first.getUC(), y.getweekday(), y.getstart(), y.getduration(), y.gettype());
                     schedulef.push_back(sch);
                     break;
                 }
