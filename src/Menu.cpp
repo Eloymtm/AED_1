@@ -30,15 +30,19 @@ void Menu::mainMenu(){
 
             case 1:
                 MenuStudents();
+                mainMenu();
                 break;
             case 2:
                 MenuTurmas();
+                mainMenu();
                 break;
             case 3:
                 MenuUC();
+                mainMenu();
                 break;
             case 4:
                 //Request();
+                mainMenu();
                 break;
             case 5:
                 language = 1;
@@ -143,7 +147,7 @@ void Menu::mainMenu(){
                     cout << x.first << " " << x.second <<endl;
                 }
                 for (auto y: schedule){
-                    cout << y.getweekday() << y.getstart() << y.getduration() << y.gettype() << endl;
+                    cout << y.getccode() << " " << y.getweekday() << " " << y.getstart() << " " << y.getduration() << " " << y.gettype() << endl;}
                 }*/
                 input.close();
             }
