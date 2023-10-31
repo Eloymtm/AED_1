@@ -8,16 +8,19 @@
 #include <sstream>
 #include "Student.h"
 #include <list>
+#include "Data.h"
+
+
 using namespace std;
 class Menu {
 public:
     void mainMenu();
     void run();
     void MenuUC();
-    void MenuStudents();
-    void readStudents();
-    void MenuTurmas();
-    void readTurmas();
+    void MenuStudents(Data &obj);
+    void readStudents(Data &obj);
+    //void MenuTurmas();
+    //void readTurmas();
     void readUC();
     vector<pair<UC,Class>> classuc;
     vector<Student> student;

@@ -25,11 +25,17 @@ public:
     std::string upcode;
     std::string name;
     Student(std::string name, std::string upcode);
-    std::string getname();
+    Student();
+    std::string getname() const;
     std::string getupcode();
+    //void addToAllStudents ();
+    //void printAllStudents();
+
     std::set<std::string> ucs;
+    //std:: set <Student> allStudents;
     std::vector<std::pair<UC,Class>> classuc;
     static std::pair<UC,Class> createpair(UC u1, Class c1);
+    bool operator<(const Student& s) const;
     //std::vector<std::Slot> schedule;
 };
 
