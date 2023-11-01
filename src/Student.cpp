@@ -14,11 +14,11 @@ Class::Class(std::string classCode) {
     this->classCode = classCode;
 }
 
-string Student::getname()const{
-//string Class::getclassCode() {
-//   return this->classCode;}
-//string Student::getname(){
 
+string Class::getclassCode() {
+  return this->classCode;
+}
+string Student::getname()const{
     return this->name;
 }
 
