@@ -128,11 +128,13 @@ void Menu::MenuStudents(Data &obj) {
 
 
 
+   void Menu::MenuTurmas(){
+        cout << "__________________________________________\n";
+        cout << "|              ClassesMenu               |\n";
+        cout << "|________________________________________|\n";
+        readTurmas();
 
-
-
-
-//void Menu::MenuUC(){
+}
         void Menu::readTurmas(){
                 vector<pair<UC,Class>> classuc;
                 vector<Slot> schedule;
@@ -167,8 +169,7 @@ void Menu::MenuStudents(Data &obj) {
                     cout << x.first << " " << x.second <<endl;
                 }
                 for (auto y: schedule){
-                    cout << y.getccode() << " " << y.getweekday() << " " << y.getstart() << " " << y.getduration() << " " << y.gettype() << endl;}
-                }*/
+                    cout << y.getccode() << " " << y.getweekday() << " " << y.getstart() << " " << y.getduration() << " " << y.gettype() << endl;}*/
                 input.close();
             }
     void Menu::MenuUC(){
