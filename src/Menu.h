@@ -21,8 +21,8 @@ public:
     void MenuUC();
     void MenuStudents(Data &obj);
     void readStudents(Data &obj);
-    //void MenuTurmas();
-    //void readTurmas();
+    void MenuTurmas();
+    void readTurmas();
     void readUC();
     vector<pair<UC,Class>> classuc;
     vector<Student> student;
