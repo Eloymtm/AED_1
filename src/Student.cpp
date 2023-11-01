@@ -38,14 +38,4 @@ bool Student::operator<(const Student& s) const {
     return this->getname() > s.getname();
 }
 
-/*void Student::addToAllStudents (){
-    allStudents.insert(*this);
-}
 
-void Student:: printAllStudents(){
-    cout << "he";
-    for (auto x: Student::allStudents){
-        cout << "hello";
-        cout << x.getname() << " " << x.getupcode() << endl;
-    }
-}*/
