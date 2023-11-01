@@ -13,9 +13,15 @@ UC::UC(std::string uCode) {
 Class::Class(std::string classCode) {
     this->classCode = classCode;
 }
+
 string Student::getname()const{
+//string Class::getclassCode() {
+//   return this->classCode;}
+//string Student::getname(){
+
     return this->name;
 }
+
 string UC::getUC(){
     return this->uCode;
 }

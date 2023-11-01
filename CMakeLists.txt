@@ -9,4 +9,6 @@ add_executable(untitled src/main.cpp
         src/Student.cpp
         src/Student.h
         src/Slot.cpp
-        src/Slot.h)
+        src/Slot.h
+        src/Schedule.h
+        src/Schedule.cpp)

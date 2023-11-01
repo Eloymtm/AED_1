@@ -32,14 +32,22 @@ void Menu::mainMenu(){
             case 1:
                 MenuStudents(objStudent);
                 break;
-            case 2:
+           // case 2:
                 //MenuTurmas();
+               // MenuStudents();
+               // mainMenu();
+                //break;
+            case 2:
+                MenuTurmas();
+                mainMenu();
                 break;
             case 3:
                 MenuUC();
+                mainMenu();
                 break;
             case 4:
                 //Request();
+                mainMenu();
                 break;
             case 5:
                 language = 1;
@@ -123,7 +131,48 @@ void Menu::MenuStudents(Data &obj) {
 
 
 
-void Menu::MenuUC(){
+
+//void Menu::MenuUC(){
+        void Menu::readTurmas(){
+                vector<pair<UC,Class>> classuc;
+                vector<Slot> schedule;
+                ifstream input("../input/classes.csv");
+                if(!input.is_open()){
+                    cout << "Error: Unable to open file 1 \n";
+                }
+                string line;
+                getline (input, line);
+                while(getline(input, line)){
+                    istringstream in (line);
+                    string classCode, ucCode, weekday, start, duration, type;
+                    getline(in,classCode, ',');
+                    getline(in, ucCode, ',');
+                    getline(in, weekday, ',');
+                    getline(in,start,',');
+                    getline(in, duration, ',');
+                    getline(in, type, ',');
+
+                    UC u1 = UC(ucCode);
+                    Class c1 = Class(classCode);
+                    pair<UC,Class> copy = Student::createpair(u1, c1);
+                    classuc.push_back(copy);
+                    Slot slot = Slot(classCode, weekday,start,duration,type);
+                    schedule.push_back(slot);
+                }
+                string cl;
+                cin >> cl;
+                Schedule::createvector(classuc, schedule, cl);
+                /*
+                for (auto x: classuc){
+                    cout << x.first << " " << x.second <<endl;
+                }
+                for (auto y: schedule){
+                    cout << y.getccode() << " " << y.getweekday() << " " << y.getstart() << " " << y.getduration() << " " << y.gettype() << endl;}
+                }*/
+                input.close();
+            }
+    void Menu::MenuUC(){
+
         cout << "__________________________________________\n";
         cout << "|                 UCMenu                 |\n";
         cout << "|________________________________________|\n";
