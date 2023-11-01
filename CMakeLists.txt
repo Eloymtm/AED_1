@@ -7,4 +7,14 @@ add_executable(untitled src/main.cpp
         src/Menu.cpp
         src/Menu.h
         src/Student.cpp
-        src/Student.h)
+        src/Student.h
+        src/Slot.cpp
+        src/Slot.h
+        src/Schedule.h
+        src/Schedule.cpp
+        src/Slot.cpp
+        src/Slot.h
+        src/Data.cpp
+        src/Data.h
+)
+

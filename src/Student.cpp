@@ -6,14 +6,32 @@ Student::Student(string name,string upcode){
     this->name = name;
     this->upcode = upcode;
 }
+Student::Student(std::string uccode, std::string ccode, std::string upcode){
+    this->uccode = uccode;
+    this->ccode = ccode;
+    this->upcode = upcode;
+}
 UC::UC(std::string uCode) {
     this->uCode = uCode;
 }
+Student::Student (){}
 Class::Class(std::string classCode) {
     this->classCode = classCode;
 }
-string Student::getname(){
+string Class::getclassCode() {
+    return this->classCode;
+}
+string Student::getccode() {
+    return this->ccode;
+}
+string Student::getuccode() {
+    return this->uccode;
+}
+string Student::getname() const{
     return this->name;
+}
+string UC::getUC(){
+    return this->uCode;
 }
 string Student::getupcode(){
     return this->upcode;
@@ -29,21 +47,8 @@ ostream& operator<<(std::ostream& os, const Class& c) {
     os << "UC value: " << c.classCode;
     return os;
 }
-Slot::Slot(string weekday,string start,string duration, string type) {
-    this->weekday = weekday;
-    this->start = start;
-    this->duration = duration;
-    this->type = type;
-}
-string Slot::getweekday(){
-    return this->weekday;
-}
-string Slot::getstart(){
-    return this->start;
-}
-string Slot::getduration(){
-    return this->duration;
-}
-string Slot::gettype(){
-    return this->type;
+
+
+bool Student::operator<(const Student& s) const {
+    return this->getname() > s.getname();
 }

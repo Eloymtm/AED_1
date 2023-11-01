@@ -7,17 +7,25 @@
 #include <fstream>
 #include <sstream>
 #include "Student.h"
+#include "Slot.h"
+#include "Schedule.h"
+#include <list>
+#include "Data.h"
 using namespace std;
 class Menu {
 public:
     void mainMenu();
     void run();
-    void MenuStudents();
-    void readStudents();
-    void MenuTurmas();
-    void readTurmas();
+    void MenuUC();
+    void MenuStudents(Data &obj);
+    void readStudents(Data &obj);
+    void MenuSchedule();
+    void Classfind();
+    void Stfind();
+    void readUC();
     vector<pair<UC,Class>> classuc;
     vector<Student> student;
+    set<UC> ucs;
 };
 
 

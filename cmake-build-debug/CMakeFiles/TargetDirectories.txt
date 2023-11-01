@@ -1,3 +1,3 @@
-/home/eloy_mm2004/Desktop/Horarioprog/untitled/cmake-build-debug/CMakeFiles/untitled.dir
-/home/eloy_mm2004/Desktop/Horarioprog/untitled/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/eloy_mm2004/Desktop/Horarioprog/untitled/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/miguel/Downloads/2u/AED/AED2324_PRJ1_G103/cmake-build-debug/CMakeFiles/untitled.dir
+/home/miguel/Downloads/2u/AED/AED2324_PRJ1_G103/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/miguel/Downloads/2u/AED/AED2324_PRJ1_G103/cmake-build-debug/CMakeFiles/rebuild_cache.dir

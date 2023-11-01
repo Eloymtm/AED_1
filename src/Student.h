@@ -9,6 +9,7 @@ class UC{
 public:
     std::string uCode;
     UC(std::string uCode);
+    std::string getUC();
     friend std::ostream& operator<<(std::ostream& os, const UC& uc);
 
 };
@@ -16,6 +17,7 @@ class Class{
 public:
     std::string classCode;
     Class(std::string classCode);
+    std::string getclassCode();
     friend std::ostream& operator<<(std::ostream& os, const Class& c);
 };
 
@@ -23,29 +25,27 @@ class Student {
 public:
     std::string upcode;
     std::string name;
+    std::string uccode;
+    std::string ccode;
     Student(std::string name, std::string upcode);
-    std::string getname();
+    Student(std::string uccode, std::string ccode, std::string upcode);
+    Student();
+    std::string getname() const;
     std::string getupcode();
+    std::string getuccode();
+    std::string getccode();
+    //void addToAllStudents ();
+    //void printAllStudents();
+
     std::set<std::string> ucs;
+    //std:: set <Student> allStudents;
     std::vector<std::pair<UC,Class>> classuc;
     static std::pair<UC,Class> createpair(UC u1, Class c1);
+    bool operator<(const Student& s) const;
     //std::vector<std::Slot> schedule;
 };
-class Slot{
-public:
-    Slot(std::string weekday,std::string start, std::string duration,std::string type);
-    std::vector<Slot> schedule;
-
-    std::string getweekday();
-    std::string getstart();
-    std::string getduration();
-    std::string gettype();
-    std::string weekday;
-    std::string start;
-    std::string duration;
-    std::string type;
-};
-
-
 
 #endif //UNTITLED_STUDENT_H
+
+
+
