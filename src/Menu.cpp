@@ -128,13 +128,13 @@ void Menu::MenuStudents(Data &obj) {
 
 
 
-   void Menu::MenuTurmas(){
-        cout << "__________________________________________\n";
-        cout << "|              ClassesMenu               |\n";
-        cout << "|________________________________________|\n";
-        readTurmas();
-
-}
+        void Menu::MenuTurmas(){
+            cout << "__________________________________________\n";
+            cout << "|              ClassesMenu               |\n";
+            cout << "|________________________________________|\n";
+            readTurmas();
+        
+        }
         void Menu::readTurmas(){
                 vector<pair<UC,Class>> classuc;
                 vector<Slot> schedule;
