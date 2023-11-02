@@ -86,7 +86,6 @@ void Menu::readStudents(Data &obj){
     }
 }
 
-
 void Menu::MenuStudents(Data &obj) {
     readStudents(obj);
     cout << "__________________________________________\n";
@@ -119,7 +118,6 @@ void Menu::MenuStudents(Data &obj) {
             break;
 
     }
-
 }
 void Menu::MenuSchedule() {
     int opção = 0;

@@ -1,4 +1,7 @@
 #include "Schedule.h"
+
+class stack;
+
 using namespace std;
 
 Schedule::Schedule(string uccode, string weekday, string start, string duration, string type) {
