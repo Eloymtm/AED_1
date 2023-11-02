@@ -5,7 +5,6 @@
 class Slot{
 public:
     Slot(std::string uccode, std::string ccode, std::string weekday,std::string start, std::string duration,std::string type);
-
     std::string getweekday();
     std::string getstart();
     std::string getduration();

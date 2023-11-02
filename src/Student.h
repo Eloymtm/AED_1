@@ -44,7 +44,6 @@ public:
     bool operator<(const Student& s) const;
     //std::vector<std::Slot> schedule;
 };
-
 #endif //UNTITLED_STUDENT_H
 
 

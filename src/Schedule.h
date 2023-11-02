@@ -4,7 +4,6 @@
 #include <string>
 #include <set>
 #include <vector>
-#include <stack>
 #include "Menu.h"
 
 class Schedule{

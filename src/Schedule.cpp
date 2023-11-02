@@ -1,6 +1,5 @@
 #include "Schedule.h"
 
-class stack;
 
 using namespace std;
 
@@ -60,5 +59,4 @@ void Schedule::createschedules(std::vector<Student> classucst, std::vector<Slot>
         cout<< x.getuccode() << " " << x.getweekday() << " " << x.getstart() << " " << x.getduration() << " " << x.gettype() << endl;
     }
 }
-
 

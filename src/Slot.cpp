@@ -10,6 +10,7 @@ Slot::Slot(string uccode, string ccode, string weekday,string start,string durat
     this->duration = duration;
     this->type = type;
 }
+
 string Slot::getuccode() {
     return this->uccode;
 }
