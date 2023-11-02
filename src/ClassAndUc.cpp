@@ -5,7 +5,7 @@ ClassAndUC:: ClassAndUC(std::string classCode, std::string ucCode){
     this->ucCode = ucCode;
 }
 
-std::string ClassAndUC:: getClassCode()
+std::string ClassAndUC:: getClassCode() const
 {
     return this->classCode;
 }

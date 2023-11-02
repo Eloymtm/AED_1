@@ -11,7 +11,7 @@ public:
     std::string ucCode;
     ClassAndUC(std::string classCode, std::string ucCode);
     std::string getUcCode() const;
-    std::string getClassCode();
+    std::string getClassCode() const;
     bool operator<(const ClassAndUC& c) const;
 
 };

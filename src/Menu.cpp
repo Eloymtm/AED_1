@@ -102,23 +102,26 @@ void Menu::MenuStudents(Data &obj) {
     cout << "|      4.Search by Year                  |\n";
     cout << "|________________________________________|\n";
 
-    int opção = 0;
-    std:: cin >> opção;
-    switch(opção){
-
-        case 1:
+    int option = 0;
+    std:: cin >> option;
+    if(option == 1){
             obj.printAllStudents();
-            break;
-        case 2:
+    }
+    else if (option == 2){
             string uc_;
             cout << "Insert UC: ";
             cin >> uc_;
-            obj.searchbyUc(uc_);
-            break;
-        /*case 3:
-            //MenuUC();
-            break;
-        case 4:
+            obj.searchByUc(uc_);
+
+    }
+    else if (option == 3){
+            string class_;
+            cout << "Insert Class: ";
+            cin >> class_;
+            obj.searchByClass(class_);
+
+    }
+        /*case 4:
             //Request();
             break;
         case 5:
@@ -126,7 +129,7 @@ void Menu::MenuStudents(Data &obj) {
 
     }
 
-}
+
 
 
 

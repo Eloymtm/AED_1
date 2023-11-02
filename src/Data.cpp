@@ -19,11 +19,29 @@ void Data:: addStudentsClasses(ClassAndUC const classes, Student student)
     this->studentClasses.insert(std::pair<ClassAndUC, Student> (classes, student));
 }
 
-void Data:: searchbyUc(std::string UC){
+void Data:: searchByUc(std::string UC){
     for(auto x: studentClasses)
     {
         if(x.first.getUcCode() == UC)
             std:: cout << x.second.getname() << std:: endl;
     }
 }
+
+void Data:: searchByClass(std::string class_){
+    for(auto x: studentClasses)
+    {
+        if(x.first.getClassCode() == class_)
+            std:: cout << x.second.getname() << std:: endl;
+    }
+}
+
+/*void Data::searchByYear(std::string year){
+    int y = 0;
+    for(auto x: studentClasses)
+    {
+        if(x.first.getUcCode() == UC and x.first.getClassCode() == )
+
+    }
+}*/
+
 //void addUcClass(UC uc, Class class_)
