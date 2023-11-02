@@ -121,13 +121,13 @@ void Menu::MenuStudents(Data &obj) {
             obj.searchByClass(class_);
 
     }
-        /*case 4:
-            //Request();
-            break;
-        case 5:
-            break;*/
-
+    else if (option == 4){
+        char year;
+        cout << "Insert year";
+        cin >> year;
+        obj.searchByYear(year);
     }
+}
 
 
 

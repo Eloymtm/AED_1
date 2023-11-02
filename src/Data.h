@@ -17,7 +17,7 @@ public :
     void addStudentsClasses(ClassAndUC uc, Student student);
     void searchByUc(std::string UC);
     void searchByClass(std::string class_);
-    void searchByYear(std::string year);
+    void searchByYear(char year);
 
     //void addUcClass(UC uc, Class class_);
 };

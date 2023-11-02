@@ -35,13 +35,19 @@ void Data:: searchByClass(std::string class_){
     }
 }
 
-/*void Data::searchByYear(std::string year){
-    int y = 0;
+void Data::searchByYear(char year){
+    std :: set<std::string> studentsyear;
     for(auto x: studentClasses)
     {
-        if(x.first.getUcCode() == UC and x.first.getClassCode() == )
-
+        std::string class_  = x.first.getClassCode();
+        if(class_[0] == year)
+        {
+            studentsyear.insert(x.second.getname());
+        }
     }
-}*/
+    for(auto x : studentsyear){
+        std:: cout << x << std:: endl;
+    }
+}
 
 //void addUcClass(UC uc, Class class_)
