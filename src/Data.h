@@ -15,7 +15,10 @@ public :
     void addAllStudents(Student student);
     void printAllStudents();
     void addStudentsClasses(ClassAndUC uc, Student student);
-    void searchbyUc(std::string UC);
+    void searchByUc(std::string UC);
+    void searchByClass(std::string class_);
+    void searchByYear(std::string year);
+
     //void addUcClass(UC uc, Class class_);
 };
 
