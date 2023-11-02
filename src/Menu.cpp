@@ -203,3 +203,9 @@ void Menu::MenuStudents(Data &obj) {
         input.close();
 
 }
+void Menu::UCcount(std::string Student){
+    for(auto x : student){
+        if(x.getname())
+
+    }
+}

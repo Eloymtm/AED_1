@@ -26,4 +26,5 @@ void Data:: searchbyUc(std::string UC){
             std:: cout << x.second.getname() << std:: endl;
     }
 }
+
 //void addUcClass(UC uc, Class class_)
