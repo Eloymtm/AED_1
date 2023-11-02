@@ -13,4 +13,6 @@ add_executable(untitled src/main.cpp
         src/Schedule.h
         src/Schedule.cpp
         src/ClassAndUc.cpp
-        src/ClassandUc.h)
+        src/ClassandUc.h
+        src/Data.cpp
+        src/Data.h)
