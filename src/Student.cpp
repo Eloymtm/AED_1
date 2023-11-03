@@ -41,7 +41,7 @@ ostream& operator<<(std::ostream& os, const Class& c) {
 }
 
 bool Student::operator<(const Student& s) const {
-    return this->getname() > s.getname();
+    return this->getname() < s.getname();
 }
 
 
