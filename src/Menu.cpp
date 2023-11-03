@@ -16,9 +16,9 @@ void Menu::mainMenu(){
         cout << "|      1. STUDENTS:                      |\n";
         cout << "|      2. SCHEDULE:                      |\n";
         cout << "|      3. REGISTERED STUDENTS:           |\n";
-        cout << "|      3. REQUEST:                       |\n";
-        cout << "|      4. SAVE AND QUIT:                 |\n";
-        cout << "|      5. QUIT WITHOUT SAVING:           |\n";
+        cout << "|      4. REQUEST:                       |\n";
+        cout << "|      5. SAVE AND QUIT:                 |\n";
+        cout << "|      6. QUIT WITHOUT SAVING:           |\n";
         cout << "|________________________________________|\n";
         cout << "Your option:";
         cin >> opção;
