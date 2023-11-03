@@ -30,7 +30,7 @@ string Student::getuccode() {
 string Student::getname() const{
     return this->name;
 }
-string UC::getUC(){
+string UC::getUC() const{
     return this->uCode;
 }
 string Student::getupcode(){
@@ -53,3 +53,6 @@ bool Student::operator<(const Student& s) const {
     return this->getname() < s.getname();
 }
 
+bool UC::operator<(const UC& uc) const {
+    return this->getUC() < uc.getUC();
+}

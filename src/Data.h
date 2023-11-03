@@ -21,12 +21,14 @@ public :
     void UCcount(Data &obj);
     void nNumbers(int o);
     void addStudentsClasses(ClassAndUC uc, Student student);
+    void addStudentsPerUc();
     void searchByUc(std::string UC);
     void searchByClass(std::string class_);
     void searchByYear(char year, int &n, int flag);
     int ucOccupation(std::string uc);
     int classOccupation(std::string class_);
     int yearOccupation(char year);
+    void nUcsWithStudentsPerUc(int n);
 
 
 
