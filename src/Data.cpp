@@ -35,7 +35,7 @@ void Data:: searchByClass(std::string class_){
     }
 }
 
-void Data::searchByYear(char year){
+void Data::searchByYear(char year, int &n, int flag){
     std :: set<std::string> studentsyear;
     for(auto x: studentClasses)
     {
@@ -45,9 +45,37 @@ void Data::searchByYear(char year){
             studentsyear.insert(x.second.getname());
         }
     }
-    for(auto x : studentsyear){
-        std:: cout << x << std:: endl;
+    if(flag == 0){
+        for(auto x : studentsyear)
+            std:: cout << x << std:: endl;
     }
+    else
+        n = studentsyear.size();
+}
+
+int Data:: ucOccupation(std::string uc){
+    int count = 0;
+    for (auto x: studentClasses){
+        if (x.first.getUcCode() == uc)
+            count++;
+    }
+    return count;
+}
+
+int Data:: classOccupation(std::string class_){
+    int count = 0;
+    std::set<std::string> s;
+    for (auto x: studentClasses){
+        if (x.first.getClassCode() == class_)
+            s.insert(x.second.getupcode());
+    }
+    return s.size();
+}
+
+int Data::yearOccupation(char year){
+    int n = 0;
+    searchByYear(year, n, 1);
+    return n;
 }
 
 //void addUcClass(UC uc, Class class_)

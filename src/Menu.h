@@ -24,6 +24,7 @@ public:
     void MenuTurmas();
     void readTurmas();
     void readUC();
+    void resgisteredStudents(Data &obj);
     vector<pair<UC,Class>> classuc;
     vector<Student> student;
     set<UC> ucs;

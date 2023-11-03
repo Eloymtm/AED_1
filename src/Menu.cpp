@@ -17,16 +17,17 @@ void Menu::mainMenu(){
         cout << "|        Choose one of the options       |\n";
         cout << "|________________________________________|\n";
         cout << "|      1. STUDENTS:                      |\n";
-        cout << "|      2. CLASSES:                       |\n";
-        cout << "|      3. UC:                            |\n";
+        cout << "|      2. SCHEDULE:                      |\n";
+        cout << "|      3. REGISTERED STUDENTS:           |\n";
         cout << "|      3. REQUEST:                       |\n";
         cout << "|      4. SAVE AND QUIT:                 |\n";
         cout << "|      5. QUIT WITHOUT SAVING:           |\n";
         cout << "|________________________________________|\n";
-        cout << "Your option:\n";
+        cout << "Your option:";
         cin >> opção;
 
         Data objStudent = Data();
+        readStudents(objStudent);
         switch(opção){
 
             case 1:
@@ -42,8 +43,8 @@ void Menu::mainMenu(){
                 mainMenu();
                 break;
             case 3:
-                MenuUC();
-                mainMenu();
+                resgisteredStudents(objStudent);
+                //mainMenu();
                 break;
             case 4:
                 //Request();
@@ -91,7 +92,7 @@ void Menu::readStudents(Data &obj){
 
 
 void Menu::MenuStudents(Data &obj) {
-    readStudents(obj);
+    //readStudents(obj);
     cout << "__________________________________________\n";
     cout << "|              StudentsMenu              |\n";
     cout << "|________________________________________|\n";
@@ -101,9 +102,10 @@ void Menu::MenuStudents(Data &obj) {
     cout << "|      3.Search by Class                 |\n";
     cout << "|      4.Search by Year                  |\n";
     cout << "|________________________________________|\n";
-
+    cout << "Your option:";
     int option = 0;
     std:: cin >> option;
+
     if(option == 1){
             obj.printAllStudents();
     }
@@ -125,7 +127,8 @@ void Menu::MenuStudents(Data &obj) {
         char year;
         cout << "Insert year";
         cin >> year;
-        obj.searchByYear(year);
+        int n = 0;
+        obj.searchByYear(year,n, 0);
     }
 }
 
@@ -205,4 +208,38 @@ void Menu::MenuStudents(Data &obj) {
         }
         input.close();
 
+}
+
+void Menu::resgisteredStudents(Data &obj){
+
+    cout << "__________________________________________\n";
+    cout << "|          Registered Students           |\n";
+    cout << "|________________________________________|\n";
+    cout << "|                                        |\n";
+    cout << "|      1.Search by UC                    |\n";
+    cout << "|      2.Search by Class                 |\n";
+    cout << "|      3.Search by Year                  |\n";
+    cout << "|________________________________________|\n";
+    cout << "Your option:";
+
+    int option = 0;
+    cin >> option;
+    if(option == 1){
+        cout << "Insert UC: ";
+        string uc;
+        cin >> uc;
+        cout << obj.ucOccupation(uc);
+    }
+    else if (option == 2){
+        cout << "Insert Class: ";
+        string class_;
+        cin >> class_;
+        cout << obj.classOccupation(class_);
+    }
+    else if(option == 3){
+        cout << "Insert Year: ";
+        char year;
+        cin >> year;
+        cout << obj.yearOccupation(year);
+    }
 }
