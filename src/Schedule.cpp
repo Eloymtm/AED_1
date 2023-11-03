@@ -31,11 +31,11 @@ void Schedule::createschedulec(vector<std::pair<UC, Class>> classuc, vector<Slot
         if(x.second.getclassCode() == cl) {
             for (auto y: schedule) {
                 if (y.getccode() == cl) {
-                    Schedule sch = Schedule(x.first.getUC(), y.getweekday(), y.getstart(), y.getduration(), y.gettype());
+                    Schedule sch = Schedule(y.getuccode(), y.getweekday(), y.getstart(), y.getduration(), y.gettype());
                     schedulef.push_back(sch);
-                    break;
                 }
             }
+            break;
         }
     }
     for(auto x : schedulef){
