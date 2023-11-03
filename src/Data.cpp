@@ -79,3 +79,4 @@ int Data::yearOccupation(char year){
 }
 
 //void addUcClass(UC uc, Class class_)
+

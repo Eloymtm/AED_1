@@ -25,10 +25,15 @@ class Student {
 public:
     std::string upcode;
     std::string name;
+    std::string uccode;
+    std::string ccode;
     Student(std::string name, std::string upcode);
+    Student(std::string uccode, std::string ccode, std::string upcode);
     Student();
     std::string getname() const;
     std::string getupcode();
+    std::string getuccode();
+    std::string getccode();
     //void addToAllStudents ();
     //void printAllStudents();
 
@@ -39,6 +44,7 @@ public:
     bool operator<(const Student& s) const;
     //std::vector<std::Slot> schedule;
 };
-
-
 #endif //UNTITLED_STUDENT_H
+
+
+
