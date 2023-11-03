@@ -14,6 +14,7 @@ public :
     std::set<Student> allStudents;
     std::multimap <ClassAndUC, Student> studentClasses;
     std:: map <UC, Class> ucClass;
+    std:: map <int, UC> studentsPerUC;
     std::vector<std::pair<Student, int>> count;
     void addAllStudents(Student student);
     void printAllStudents();

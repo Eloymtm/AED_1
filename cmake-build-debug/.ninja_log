@@ -1,9 +1,0 @@
-# ninja log v5
-0	519	1698928167594815986	CMakeFiles/untitled.dir/src/main.cpp.o	eddcfeeb72ba0de6
-1	753	1698928167826817242	CMakeFiles/untitled.dir/src/Menu.cpp.o	4fcbd7999af410ee
-1	211	1698928200563917023	CMakeFiles/untitled.dir/src/ClassAndUc.cpp.o	5ef328f31be57c39
-1	391	1698928167466815293	CMakeFiles/untitled.dir/src/Slot.cpp.o	11a916deef8dbb11
-1	410	1698928167482815380	CMakeFiles/untitled.dir/src/Student.cpp.o	5808fae8824719de
-2	584	1698928167658816333	CMakeFiles/untitled.dir/src/Schedule.cpp.o	e6ff2b00bf47e814
-1	450	1698928285204270165	CMakeFiles/untitled.dir/src/Data.cpp.o	5e64e8fbd537d079
-450	553	1698928285308270946	untitled	ae40984bf7ca4d7b

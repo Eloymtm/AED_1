@@ -37,7 +37,7 @@ void Menu::mainMenu(){
                // mainMenu();
                 //break;
             case 2:
-                MenuTurmas();
+                MenuSchedule();
                 mainMenu();
                 break;
             case 3:
@@ -245,14 +245,14 @@ void Menu::Stfind() {
     input2.close();
 }
 
-        void Menu::MenuTurmas(){
+        /*void Menu::MenuTurmas(){
             cout << "__________________________________________\n";
             cout << "|              ClassesMenu               |\n";
             cout << "|________________________________________|\n";
             readTurmas();
         
-        }
-        void Menu::readTurmas(){
+        }*/
+        /*void Menu::readTurmas(){
                 vector<Slot> schedule;
                 ifstream input("../input/classes.csv");
                 if(!input.is_open()){
@@ -287,7 +287,7 @@ void Menu::Stfind() {
                 for (auto y: schedule){
                     cout << y.getccode() << " " << y.getweekday() << " " << y.getstart() << " " << y.getduration() << " " << y.gettype() << endl;}
                 input.close();
-            }
+            }*/
     void Menu::MenuUC(){
 
         cout << "__________________________________________\n";

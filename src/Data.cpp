@@ -102,8 +102,8 @@ int Data:: classOccupation(std::string class_){
         if (x.first.getClassCode() == class_)
             s.insert(x.second.getupcode());
     }
-}
     return s.size();
+
 }
 
 int Data::yearOccupation(char year){
