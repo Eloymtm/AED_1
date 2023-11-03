@@ -29,6 +29,11 @@ void Menu::mainMenu(){
         case 1:
             MenuStudents(objStudent);
             break;
+        // case 2:
+                //MenuTurmas();
+               // MenuStudents();
+               // mainMenu();
+                //break;
         case 2:
             MenuSchedule();
             mainMenu();
@@ -69,7 +74,6 @@ void Menu::readStudents(Data &obj){
 
         obj.addAllStudents(s);
         obj.addStudentsClasses(c, s);
-
     }
 
     input.close();
@@ -85,7 +89,8 @@ void Menu::MenuStudents(Data &obj) {
     cout << "|      1.All Students                    |\n";
     cout << "|      2.Search by UC                    |\n";
     cout << "|      3.Search by Class                 |\n";
-    cout << "|      4.Search by Year                  |\n";
+    cout << "|      4.Search by Year                  |\n"
+            "|      5.At least n Uc's:                |\n";
     cout << "|________________________________________|\n";
     cout << "Your option:";
     int option = 0;
@@ -108,13 +113,27 @@ void Menu::MenuStudents(Data &obj) {
             obj.searchByClass(class_);
 
     }
-    else if (option == 4){
+  else if (option == 4){
         char year;
         cout << "Insert year:";
         cin >> year;
         int n = 0;
         obj.searchByYear(year,n, 0);
     }
+    else if(option == 5){
+        int o;
+        cout << "Number of n uc's:";
+        cin >> o;
+        obj.UCcount(obj);
+        obj.nNumbers(o);
+    }
+        /*case 4:
+            //Request();
+            break;
+        case 5:
+            break;*/
+
+    
 }
 
 
@@ -222,15 +241,59 @@ void Menu::Stfind() {
     input2.close();
 }
 
+
+        /*void Menu::MenuTurmas(){
+            cout << "__________________________________________\n";
+            cout << "|              ClassesMenu               |\n";
+            cout << "|________________________________________|\n";
+            readTurmas();
+        
+        }*/
+        /*void Menu::readTurmas(){
+                vector<Slot> schedule;
+                ifstream input("../input/classes.csv");
+                if(!input.is_open()){
+                    cout << "Error: Unable to open file 1 \n";
+                }
+                string line;
+                getline (input, line);
+                while(getline(input, line)){
+                    istringstream in (line);
+                    string classCode, ucCode, weekday, start, duration, type;
+                    getline(in,classCode, ',');
+                    getline(in, ucCode, ',');
+                    getline(in, weekday, ',');
+                    getline(in,start,',');
+                    getline(in, duration, ',');
+                    getline(in, type, ',');
+
+                    UC u1 = UC(ucCode);
+                    Class c1 = Class(classCode);
+                    pair<UC,Class> copy = Student::createpair(u1, c1);
+                    classuc.push_back(copy);
+                    Slot slot = Slot(classCode, weekday,start,duration,type);
+                    schedule.push_back(slot);
+                }
+                string cl;
+                cin >> cl;
+                Schedule::createvector(classuc, schedule, cl);
+
+                for (auto x: classuc){
+                    cout << x.first << " " << x.second <<endl;
+                }
+                for (auto y: schedule){
+                    cout << y.getccode() << " " << y.getweekday() << " " << y.getstart() << " " << y.getduration() << " " << y.gettype() << endl;}
+                input.close();
+            }*/
     void Menu::MenuUC(){
 
         cout << "__________________________________________\n";
         cout << "|                 UCMenu                 |\n";
         cout << "|________________________________________|\n";
         readUC();
+
     }
     void Menu::readUC(){
-        list<UC> ucs;
         ifstream input("../input/classes_per_uc.csv");
         if(!input.is_open())
             cout << "Error: Unable to open file 3 \n";
@@ -243,7 +306,7 @@ void Menu::Stfind() {
             getline(in, ucCode, ',');
 
             UC u = UC(ucCode);
-            ucs.push_back(u);
+            ucs1.push_back(u);
         }
         for (auto x: ucs){
             cout << x << endl;
@@ -251,7 +314,6 @@ void Menu::Stfind() {
         input.close();
 
 }
-
 void Menu::resgisteredStudents(Data &obj){
 
     cout << "__________________________________________\n";

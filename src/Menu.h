@@ -24,10 +24,13 @@ public:
     void Classfind();
     void Stfind();
     void readUC();
+    void UCcount();
     void resgisteredStudents(Data &obj);
     vector<pair<UC,Class>> classuc;
     vector<Student> student;
     set<UC> ucs;
+    list<UC> ucs1;
+
 };
 
 
