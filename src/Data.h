@@ -22,7 +22,10 @@ public :
     void addStudentsClasses(ClassAndUC uc, Student student);
     void searchByUc(std::string UC);
     void searchByClass(std::string class_);
-    void searchByYear(std::string year);
+    void searchByYear(char year, int &n, int flag);
+    int ucOccupation(std::string uc);
+    int classOccupation(std::string class_);
+    int yearOccupation(char year);
 
 
 
@@ -32,3 +35,4 @@ public :
 
 
 #endif //UNTITLED_DATA_H
+

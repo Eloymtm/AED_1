@@ -66,11 +66,51 @@ bool Student::operator!=(Student s){
     }
     return false;
 }
-/*void Data::searchByYear(std::string year){
-    int y = 0;
+
+void Data::searchByYear(char year, int &n, int flag){
+    std :: set<std::string> studentsyear;
+
     for(auto x: studentClasses)
     {
-        if(x.first.getUcCode() == UC and x.first.getClassCode() == )
-
+        std::string class_  = x.first.getClassCode();
+        if(class_[0] == year)
+        {
+            studentsyear.insert(x.second.getname());
+        }
     }
-}*/
+    if(flag == 0){
+        for(auto x : studentsyear)
+            std:: cout << x << std:: endl;
+    }
+    else
+        n = studentsyear.size();
+}
+
+int Data:: ucOccupation(std::string uc){
+    int count = 0;
+    for (auto x: studentClasses){
+        if (x.first.getUcCode() == uc)
+            count++;
+    }
+    return count;
+}
+
+int Data:: classOccupation(std::string class_){
+    int count = 0;
+    std::set<std::string> s;
+    for (auto x: studentClasses){
+        if (x.first.getClassCode() == class_)
+            s.insert(x.second.getupcode());
+    }
+}
+    return s.size();
+}
+
+int Data::yearOccupation(char year){
+    int n = 0;
+    searchByYear(year, n, 1);
+    return n;
+}
+
+//void addUcClass(UC uc, Class class_)
+

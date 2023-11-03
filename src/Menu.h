@@ -12,7 +12,6 @@
 #include <list>
 #include "Data.h"
 
-
 using namespace std;
 class Menu {
 public:
@@ -21,10 +20,12 @@ public:
     void MenuUC();
     void MenuStudents(Data &obj);
     void readStudents(Data &obj);
-    void MenuTurmas();
-    void readTurmas();
+    void MenuSchedule();
+    void Classfind();
+    void Stfind();
     void readUC();
     void UCcount();
+    void resgisteredStudents(Data &obj);
     vector<pair<UC,Class>> classuc;
     vector<Student> student;
     set<UC> ucs;

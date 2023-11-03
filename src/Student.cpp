@@ -6,21 +6,30 @@ Student::Student(string name,string upcode){
     this->name = name;
     this->upcode = upcode;
 }
+Student::Student(std::string uccode, std::string ccode, std::string upcode){
+    this->uccode = uccode;
+    this->ccode = ccode;
+    this->upcode = upcode;
+}
 UC::UC(std::string uCode) {
     this->uCode = uCode;
 }
+Student::Student (){}
 Class::Class(std::string classCode) {
     this->classCode = classCode;
 }
-
-
 string Class::getclassCode() {
-  return this->classCode;
+    return this->classCode;
 }
-string Student::getname()const{
+string Student::getccode() {
+    return this->ccode;
+}
+string Student::getuccode() {
+    return this->uccode;
+}
+string Student::getname() const{
     return this->name;
 }
-
 string UC::getUC(){
     return this->uCode;
 }
@@ -39,8 +48,8 @@ ostream& operator<<(std::ostream& os, const Class& c) {
     return os;
 }
 
-bool Student::operator<(const Student& s) const {
-    return this->getname() > s.getname();
-}
 
+bool Student::operator<(const Student& s) const {
+    return this->getname() < s.getname();
+}
 
