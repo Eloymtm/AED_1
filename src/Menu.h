@@ -24,9 +24,12 @@ public:
     void MenuTurmas();
     void readTurmas();
     void readUC();
+    void UCcount();
     vector<pair<UC,Class>> classuc;
     vector<Student> student;
     set<UC> ucs;
+    list<UC> ucs1;
+
 };
 
 

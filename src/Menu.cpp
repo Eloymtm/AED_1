@@ -31,6 +31,7 @@ void Menu::mainMenu(){
 
             case 1:
                 MenuStudents(objStudent);
+                mainMenu();
                 break;
            // case 2:
                 //MenuTurmas();
@@ -83,7 +84,6 @@ void Menu::readStudents(Data &obj){
 
         obj.addAllStudents(s);
         obj.addStudentsClasses(c, s);
-
     }
 
     input.close();
@@ -99,7 +99,8 @@ void Menu::MenuStudents(Data &obj) {
     cout << "|      1.All Students                    |\n";
     cout << "|      2.Search by UC                    |\n";
     cout << "|      3.Search by Class                 |\n";
-    cout << "|      4.Search by Year                  |\n";
+    cout << "|      4.Search by Year                  |\n"
+            "|      5.At least n Uc's:                |\n";
     cout << "|________________________________________|\n";
 
     int option = 0;
@@ -121,6 +122,13 @@ void Menu::MenuStudents(Data &obj) {
             obj.searchByClass(class_);
 
     }
+    else if(option == 5){
+        int o;
+        cout << "Number of n uc's:";
+        cin >> o;
+        obj.UCcount(obj);
+        obj.nNumbers(o);
+    }
         /*case 4:
             //Request();
             break;
@@ -141,7 +149,6 @@ void Menu::MenuStudents(Data &obj) {
         
         }
         void Menu::readTurmas(){
-                vector<pair<UC,Class>> classuc;
                 vector<Slot> schedule;
                 ifstream input("../input/classes.csv");
                 if(!input.is_open()){
@@ -169,12 +176,12 @@ void Menu::MenuStudents(Data &obj) {
                 string cl;
                 cin >> cl;
                 Schedule::createvector(classuc, schedule, cl);
-                /*
+
                 for (auto x: classuc){
                     cout << x.first << " " << x.second <<endl;
                 }
                 for (auto y: schedule){
-                    cout << y.getccode() << " " << y.getweekday() << " " << y.getstart() << " " << y.getduration() << " " << y.gettype() << endl;}*/
+                    cout << y.getccode() << " " << y.getweekday() << " " << y.getstart() << " " << y.getduration() << " " << y.gettype() << endl;}
                 input.close();
             }
     void Menu::MenuUC(){
@@ -183,9 +190,9 @@ void Menu::MenuStudents(Data &obj) {
         cout << "|                 UCMenu                 |\n";
         cout << "|________________________________________|\n";
         readUC();
+
     }
     void Menu::readUC(){
-        list<UC> ucs;
         ifstream input("../input/classes_per_uc.csv");
         if(!input.is_open())
             cout << "Error: Unable to open file 3 \n";
@@ -198,7 +205,7 @@ void Menu::MenuStudents(Data &obj) {
             getline(in, ucCode, ',');
 
             UC u = UC(ucCode);
-            ucs.push_back(u);
+            ucs1.push_back(u);
         }
         for (auto x: ucs){
             cout << x << endl;
@@ -206,9 +213,4 @@ void Menu::MenuStudents(Data &obj) {
         input.close();
 
 }
-void Menu::UCcount(std::string Student){
-    for(auto x : student){
-        if(x.getname())
 
-    }
-}

@@ -6,7 +6,6 @@ Student::Student(string name,string upcode){
     this->name = name;
     this->upcode = upcode;
 }
-Student::Student (){}
 UC::UC(std::string uCode) {
     this->uCode = uCode;
 }
