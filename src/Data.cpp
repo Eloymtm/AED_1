@@ -19,6 +19,13 @@ void Data:: addStudentsClasses(ClassAndUC const classes, Student student)
     this->studentClasses.insert(std::pair<ClassAndUC, Student> (classes, student));
 }
 
+void Data:: addStudentsPerUc(){
+    for(auto x: studentClasses){
+        std::string temp = x.first.getUcCode();
+        studentsPerUC.insert(std::pair <int, UC>(ucOccupation(temp), temp ));
+    }
+}
+
 void Data:: searchByUc(std::string UC){
     for(auto x: studentClasses)
     {
@@ -110,6 +117,15 @@ int Data::yearOccupation(char year){
     int n = 0;
     searchByYear(year, n, 1);
     return n;
+}
+
+void Data::nUcsWithStudentsPerUc(int n){
+    for (auto reverseit = studentsPerUC.rbegin(); reverseit != studentsPerUC.rend(); ++reverseit) {
+        std::cout << reverseit->first << ", has " << reverseit->second << " students" <<std::endl;
+        n--;
+        if (n == 0)
+            break;
+    }
 }
 
 //void addUcClass(UC uc, Class class_)

@@ -8,28 +8,32 @@ void Menu::run(){
 void Menu::mainMenu(){
     int opção = 0;
 
-    cout << "__________________________________________\n";
-    cout << "|                MainMenu                |\n";
-    cout << "|        Choose one of the options       |\n";
-    cout << "|________________________________________|\n";
-    cout << "|      1. STUDENTS:                      |\n";
-    cout << "|      2. SCHEDULE:                      |\n";
-    cout << "|      3. REGISTERED STUDENTS:           |\n";
-    cout << "|      4. REQUEST:                       |\n";
-    cout << "|      5. SAVE AND QUIT:                 |\n";
-    cout << "|      6. QUIT WITHOUT SAVING:           |\n";
-    cout << "|________________________________________|\n";
-    cout << "Your option:";
-    cin >> opção;
 
-    Data objStudent = Data();
-    readStudents(objStudent);
-    switch(opção){
+        cout << "__________________________________________\n";
+        cout << "|                MainMenu                |\n";
+        cout << "|        Choose one of the options       |\n";
+        cout << "|________________________________________|\n";
+        cout << "|      1. STUDENTS:                      |\n";
+        cout << "|      2. SCHEDULE:                      |\n";
+        cout << "|      3. REGISTERED STUDENTS:           |\n";
+        cout << "|      3. REQUEST:                       |\n";
+        cout << "|      4. SAVE AND QUIT:                 |\n";
+        cout << "|      5. QUIT WITHOUT SAVING:           |\n";
+        cout << "|________________________________________|\n";
+        cout << "Your option:";
+        cin >> opção;
 
-        case 1:
-            MenuStudents(objStudent);
-            break;
-        // case 2:
+        Data objStudent = Data();
+        readStudents(objStudent);
+        objStudent.addStudentsPerUc();
+        switch(opção){
+
+            case 1:
+                MenuStudents(objStudent);
+                mainMenu();
+                break;
+           // case 2:
+
                 //MenuTurmas();
                // MenuStudents();
                // mainMenu();
@@ -89,8 +93,9 @@ void Menu::MenuStudents(Data &obj) {
     cout << "|      1.All Students                    |\n";
     cout << "|      2.Search by UC                    |\n";
     cout << "|      3.Search by Class                 |\n";
-    cout << "|      4.Search by Year                  |\n"
-            "|      5.At least n Uc's:                |\n";
+    cout << "|      4.Search by Year                  |\n";
+    cout << "|      5.At least n Uc's:                |\n";
+    cout << "|      6.UCs with more Students:         |\n";
     cout << "|________________________________________|\n";
     cout << "Your option:";
     int option = 0;
@@ -122,16 +127,18 @@ void Menu::MenuStudents(Data &obj) {
     }
     else if(option == 5){
         int o;
-        cout << "Number of n uc's:";
+        cout << "Number of n Uc's:";
         cin >> o;
         obj.UCcount(obj);
         obj.nNumbers(o);
     }
-        /*case 4:
-            //Request();
-            break;
-        case 5:
-            break;*/
+    else if (option == 6)
+    {
+        int n;
+        cout << "Number of Uc's: ";
+        cin >> n;
+        obj.nUcsWithStudentsPerUc(n);
+    }
 
     
 }
