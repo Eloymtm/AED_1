@@ -1,6 +1,5 @@
 #include "Menu.h"
 
-int language;
 using namespace std;
 
 void Menu::run(){
@@ -9,50 +8,46 @@ void Menu::run(){
 void Menu::mainMenu(){
     int opção = 0;
 
-        cout << "__________________________________________\n";
-        cout << "|                MainMenu                |\n";
-        cout << "|        Choose one of the options       |\n";
-        cout << "|________________________________________|\n";
-        cout << "|      1. STUDENTS:                      |\n";
-        cout << "|      2. SCHEDULE:                      |\n";
-        cout << "|      3. REGISTERED STUDENTS:           |\n";
-        cout << "|      3. REQUEST:                       |\n";
-        cout << "|      4. SAVE AND QUIT:                 |\n";
-        cout << "|      5. QUIT WITHOUT SAVING:           |\n";
-        cout << "|________________________________________|\n";
-        cout << "Your option:";
-        cin >> opção;
+    cout << "__________________________________________\n";
+    cout << "|                MainMenu                |\n";
+    cout << "|        Choose one of the options       |\n";
+    cout << "|________________________________________|\n";
+    cout << "|      1. STUDENTS:                      |\n";
+    cout << "|      2. SCHEDULE:                      |\n";
+    cout << "|      3. REGISTERED STUDENTS:           |\n";
+    cout << "|      4. REQUEST:                       |\n";
+    cout << "|      5. SAVE AND QUIT:                 |\n";
+    cout << "|      6. QUIT WITHOUT SAVING:           |\n";
+    cout << "|________________________________________|\n";
+    cout << "Your option:";
+    cin >> opção;
 
-        Data objStudent = Data();
-        readStudents(objStudent);
-        switch(opção){
+    Data objStudent = Data();
+    readStudents(objStudent);
+    switch(opção){
 
-            case 1:
-                MenuStudents(objStudent);
-                mainMenu();
-                break;
-           // case 2:
+        case 1:
+            MenuStudents(objStudent);
+            break;
+        // case 2:
                 //MenuTurmas();
                // MenuStudents();
                // mainMenu();
                 //break;
-            case 2:
-                MenuSchedule();
-                mainMenu();
-                break;
-            case 3:
-                resgisteredStudents(objStudent);
-                //mainMenu();
-                break;
-            case 4:
-                //Request();
-                mainMenu();
-                break;
-            case 5:
-                language = 1;
-                break;
-
-
+        case 2:
+            MenuSchedule();
+            mainMenu();
+            break;
+        case 3:
+            resgisteredStudents(objStudent);
+            //mainMenu();
+            break;
+        case 4:
+            //Request();
+            mainMenu();
+            break;
+        case 5:
+            break;
     }
 }
 
@@ -120,7 +115,7 @@ void Menu::MenuStudents(Data &obj) {
     }
   else if (option == 4){
         char year;
-        cout << "Insert year";
+        cout << "Insert year:";
         cin >> year;
         int n = 0;
         obj.searchByYear(year,n, 0);
@@ -164,6 +159,7 @@ void Menu::MenuSchedule() {
             break;
     }
 }
+
 void Menu::Classfind(){
     vector<pair<UC,Class>> classuc;
     vector<Slot> schedule;
@@ -182,7 +178,6 @@ void Menu::Classfind(){
         getline(in,start,',');
         getline(in, duration, ',');
         getline(in, type, ',');
-
         UC u1 = UC(ucCode);
         Class c1 = Class(classCode);
         pair<UC,Class> copy = Student::createpair(u1, c1);
@@ -195,6 +190,7 @@ void Menu::Classfind(){
     Schedule::createschedulec(classuc, schedule, cl);
     input.close();
 }
+
 void Menu::Stfind() {
     vector<Student> classucst;
     ifstream input("../input/students_classes.csv");
@@ -244,6 +240,7 @@ void Menu::Stfind() {
     input.close();
     input2.close();
 }
+
 
         /*void Menu::MenuTurmas(){
             cout << "__________________________________________\n";
