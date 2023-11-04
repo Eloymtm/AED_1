@@ -10,12 +10,13 @@
 #include "Slot.h"
 #include "Schedule.h"
 #include <list>
+#include <limits>
 #include "Data.h"
 
 using namespace std;
 class Menu {
 public:
-    void mainMenu();
+    void mainMenu(Data &objStudent);
     void run();
     void MenuUC();
     void MenuStudents(Data &obj);
@@ -27,6 +28,8 @@ public:
     void saveStudent();
     void UCcount();
     void resgisteredStudents(Data &obj);
+    void wait(Data &objStudent);
+    vector<Slot>schedule;
     vector<pair<UC,Class>> classuc;
     vector<Student> student;
     set<UC> ucs;
