@@ -22,23 +22,41 @@ void Data:: addStudentsClasses(ClassAndUC const classes, Student student)
 void Data:: addStudentsPerUc(){
     for(auto x: studentClasses){
         std::string temp = x.first.getUcCode();
-        studentsPerUC.insert(std::pair <int, UC>(ucOccupation(temp), temp ));
+
+        mStudentsPerUC.insert(std::pair <UC, int>(temp, ucOccupation(temp)));
     }
+}
+void Data:: addStudentsPerClass(){
+    for(auto x : studentClasses)
+    {
+        mStudentsPerClass.insert(std::pair<ClassAndUC, int>(x.first , classOccupation(x.first.getClassCode())));
+    }
+
 }
 
 void Data:: searchByUc(std::string UC){
+    int found = 0;
     for(auto x: studentClasses)
     {
-        if(x.first.getUcCode() == UC)
+        if(x.first.getUcCode() == UC){
             std:: cout << x.second.getname() << std:: endl;
+            found = 1;
+        }
     }
+    if (found == 0)
+        std::cout << "Not Found" << std::endl;
 }
-void Data:: searchByClass(std::string class_){
+void Data:: searchByClass(std::string class_, std::string uc){
+    int found = 0;
     for(auto x: studentClasses)
     {
-        if(x.first.getClassCode() == class_)
+        if(x.first.getClassCode() == class_ and x.first.getUcCode() == uc){
             std:: cout << x.second.getname() << std:: endl;
+            found = 1;
+        }
     }
+    if(found == 0)
+        std::cout << "Not Found" << std::endl;
 }
 void Data::UCcount(Data &obj){
     int u = 0,p = 0,max = 0;
@@ -76,13 +94,14 @@ bool Student::operator!=(Student s){
 
 void Data::searchByYear(char year, int &n, int flag){
     std :: set<std::string> studentsyear;
-
+    int found =0;
     for(auto x: studentClasses)
     {
         std::string class_  = x.first.getClassCode();
         if(class_[0] == year)
         {
             studentsyear.insert(x.second.getname());
+            found = 1;
         }
     }
     if(flag == 0){
@@ -91,6 +110,8 @@ void Data::searchByYear(char year, int &n, int flag){
     }
     else
         n = studentsyear.size();
+    if(found == 0)
+        std::cout << "Not Found" << std::endl;
 }
 
 int Data:: ucOccupation(std::string uc){
@@ -120,11 +141,22 @@ int Data::yearOccupation(char year){
 }
 
 void Data::nUcsWithStudentsPerUc(int n){
-    for (auto reverseit = studentsPerUC.rbegin(); reverseit != studentsPerUC.rend(); ++reverseit) {
-        std::cout << reverseit->first << ", has " << reverseit->second << " students" <<std::endl;
-        n--;
-        if (n == 0)
-            break;
+    std::vector<std::pair<UC, int>> studentsPerUC(mStudentsPerUC.begin(), mStudentsPerUC.end());
+    std::sort(studentsPerUC.begin(), studentsPerUC.end(), [](const auto& a, const auto& b) {
+        return a.second > b.second;
+    });
+    for (int i = 0; i < n && i < studentsPerUC.size(); i++) {
+        std::cout << "UC : " << studentsPerUC[i].first << ", has " << studentsPerUC[i].second << " students" <<std::endl;
+    }
+
+}
+void Data:: studentsClassesPerClasses(std:: string Class){
+    std::vector<std::pair<ClassAndUC, int>> studentPerClass(mStudentsPerClass.begin(), mStudentsPerClass.end());
+    std::sort(studentsPerUC.begin(), studentsPerUC.end(), [](const auto& a, const auto& b) {
+        return a.second > b.second;
+    });
+    for (int i = 0; i < i < studentsPerUC.size(); i++) {
+        std::cout << "UC : " << studentsPerUC[i].first << ", has " << studentsPerUC[i].second << " students" <<std::endl;
     }
 }
 void Data::createschedulec(std::vector<std::pair<UC, Class>> classuc, std::vector<Slot> schedule, std::string cl){
@@ -158,6 +190,25 @@ void Data::createschedules(std::vector<Student> classucst, std::vector<Slot> sch
         std::cout<< x.getuccode() << " " << x.getweekday() << " " << x.getstart() << " " << x.getduration() << " " << x.gettype() << std::endl;
     }
 }
+
+int Data:: ucsPerStudent(std::string studentCode){
+    int count = 0;
+    for(auto x: studentClasses){
+        if(x.second.getupcode() == studentCode)
+            count++;
+    }
+    return count;
+}
+
+void Data::requestAddUc(std::string studentCode, std::string new_uc ){
+    int ucs = ucsPerStudent(studentCode);
+    if (ucs >= 7){
+        std:: cout << "Request Denied" << std::endl;
+        return;
+    }
+
+}
+
 
 //void addUcClass(UC uc, Class class_)
 

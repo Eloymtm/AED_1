@@ -28,6 +28,8 @@ public:
     void saveStudent();
     void UCcount();
     void resgisteredStudents(Data &obj);
+
+    void request();
     void wait(Data &objStudent);
     vector<Slot>schedule;
     vector<pair<UC,Class>> classuc;

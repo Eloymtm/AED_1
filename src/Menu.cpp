@@ -49,11 +49,17 @@ void Menu::mainMenu(Data &objStudent){
             wait(objStudent);
             break;
         case 4:
-            //Request();
+
+            request();
+            mainMenu();
             wait(objStudent);
             break;
         case 5:
+            // chamar função que guarda requests  se houver requests
             break;
+        case 6:
+            break;
+
     }
 }
 
@@ -163,10 +169,12 @@ void Menu::MenuStudents(Data &obj) {
 
     }
     else if (option == 3){
-            string class_;
+            string class_, uc;
             cout << "Insert Class: ";
             cin >> class_;
-            obj.searchByClass(class_);
+            cout << "Insert UC: ";
+            cin >> uc;
+            obj.searchByClass(class_, uc);
 
     }
   else if (option == 4){
@@ -405,6 +413,35 @@ void Menu::resgisteredStudents(Data &obj){
         cout << obj.yearOccupation(year);
     }
 }
+
+
+void Menu:: request(){
+
+    cout << "__________________________________________\n";
+    cout << "|          Student Requests              |\n";
+    cout << "|________________________________________|\n";
+    cout << "|                                        |\n";
+    cout << "|      1.Add UC                          |\n";
+    cout << "|      2.Add Class                       |\n";
+    cout << "|      3.Remove UC                       |\n";
+    cout << "|      4.Remove Class                    |\n";
+    cout << "|      5.SWitch UC                       |\n";
+    cout << "|      6.SWitch Class                    |\n";
+    cout << "|________________________________________|\n";
+    cout << "Your option:";
+    int option;
+    cin >> option;
+
+    if (option == 1){
+        string ucode, new_uc;
+        cout << "Student Code: " << endl;
+        cin >> ucode;
+        cout << "UC to add: " << endl;
+        cin >> new_uc;
+
+    }
+}
+
 void Menu::saveStudent(){
                 ofstream output("../input/classes.csv");
                 output.clear();
@@ -422,3 +459,4 @@ void Menu::wait(Data &objStudent) {
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     mainMenu(objStudent);
 }
+
