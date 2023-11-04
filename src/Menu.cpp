@@ -30,10 +30,10 @@ void Menu::mainMenu(Data &objStudent){
 
         switch(opção){
 
-            case 1:
-                MenuStudents(objStudent);
-                wait(objStudent);
-                break;
+        case 1:
+            MenuStudents(objStudent);
+            wait(objStudent);
+            break;
            // case 2:
 
                 //MenuTurmas();
@@ -53,6 +53,9 @@ void Menu::mainMenu(Data &objStudent){
             wait(objStudent);
             break;
         case 5:
+            saveStudent(objStudent);
+            break;
+        case 6:
             break;
     }
 }
@@ -98,13 +101,21 @@ void Menu::MenuStudents(Data &obj) {
     cout << "|      4.Search by Year                  |\n";
     cout << "|      5.At least n Uc's:                |\n";
     cout << "|      6.UCs with more Students:         |\n";
+    cout << "|                                        |\n";
+    cout << "|          \033[31mPress B to go back.\033[0m           |\n";
     cout << "|________________________________________|\n";
     cout << "Your option:";
-    int option = 0;
+    string option;
+    int c;
     std:: cin >> option;
-
-    /*while(true){
-        switch(option){
+        if(option=="1")option=1;
+        else if(option=="2") c=2;
+        else if(option=="3") c=3;
+        else if(option=="4") c=4;
+        else if(option=="5") c=5;
+        else if(option=="6") c=6;
+        else if(option=="B") c=7;
+        switch(c){
             case 1:
             {
                 obj.printAllStudents();
@@ -150,8 +161,9 @@ void Menu::MenuStudents(Data &obj) {
                 cin >> n;
                 obj.nUcsWithStudentsPerUc(n);
                 break;
-        }
-    }*/
+            case 7:
+                break;
+    }/*
     if(option == 1){
             obj.printAllStudents();
     }
@@ -190,8 +202,11 @@ void Menu::MenuStudents(Data &obj) {
         cin >> n;
         obj.nUcsWithStudentsPerUc(n);
     }
+    else if(option == 'B'){
 
+    }
     
+    */
 }
 
 
@@ -390,22 +405,22 @@ void Menu::resgisteredStudents(Data &obj){
         cout << "Insert UC: ";
         string uc;
         cin >> uc;
-        cout << obj.ucOccupation(uc);
+        cout << obj.ucOccupation(uc)<<std::endl;
     }
     else if (option == 2){
         cout << "Insert Class: ";
         string class_;
         cin >> class_;
-        cout << obj.classOccupation(class_);
+        cout << obj.classOccupation(class_)<<std::endl;
     }
     else if(option == 3){
         cout << "Insert Year: ";
         char year;
         cin >> year;
-        cout << obj.yearOccupation(year);
+        cout << obj.yearOccupation(year)<<std::endl;
     }
 }
-void Menu::saveStudent(){
+void Menu::saveStudent(Data &objStudent){
                 ofstream output("../input/classes.csv");
                 output.clear();
                 output << "ClassCode,UcCode,Weekday,StartHour,Duration,Type\n";
@@ -417,7 +432,7 @@ void Menu::saveStudent(){
 
 void Menu::wait(Data &objStudent) {
         string o;
-    cout << "Press ENTER to continue...";
+    cout << "Press ENTER to continue...\n";
     cin.get(); // Aguarda a entrada de uma tecla
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     mainMenu(objStudent);
