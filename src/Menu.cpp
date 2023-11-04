@@ -1,11 +1,15 @@
+
 #include "Menu.h"
 
 using namespace std;
 
 void Menu::run(){
-    mainMenu();
+    Data objStudent = Data();
+    readStudents(objStudent);
+    objStudent.addStudentsPerUc();
+    mainMenu(objStudent);
 }
-void Menu::mainMenu(){
+void Menu::mainMenu(Data &objStudent){
     int opção = 0;
 
 
@@ -23,14 +27,12 @@ void Menu::mainMenu(){
         cout << "Your option:";
         cin >> opção;
 
-        Data objStudent = Data();
-        readStudents(objStudent);
-        objStudent.addStudentsPerUc();
+
         switch(opção){
 
             case 1:
                 MenuStudents(objStudent);
-                mainMenu();
+                wait(objStudent);
                 break;
            // case 2:
 
@@ -40,15 +42,15 @@ void Menu::mainMenu(){
                 //break;
         case 2:
             MenuSchedule();
-            mainMenu();
+            wait(objStudent);
             break;
         case 3:
             resgisteredStudents(objStudent);
-            //mainMenu();
+            wait(objStudent);
             break;
         case 4:
             //Request();
-            mainMenu();
+            wait(objStudent);
             break;
         case 5:
             break;
@@ -101,7 +103,7 @@ void Menu::MenuStudents(Data &obj) {
     int option = 0;
     std:: cin >> option;
 
-    while(true){
+    /*while(true){
         switch(option){
             case 1:
             {
@@ -149,7 +151,7 @@ void Menu::MenuStudents(Data &obj) {
                 obj.nUcsWithStudentsPerUc(n);
                 break;
         }
-    }
+    }*/
     if(option == 1){
             obj.printAllStudents();
     }
@@ -243,7 +245,7 @@ void Menu::Classfind(){
     }
     string cl;
     cin >> cl;
-    Schedule::createschedulec(classuc, schedule, cl);
+    Data::createschedulec(classuc, schedule, cl);
     input.close();
 }
 
@@ -291,7 +293,7 @@ void Menu::Stfind() {
     }
     string st;
     cin >> st;
-    Schedule::createschedules(classucst, schedule, st);
+    Data::createschedules(classucst, schedule, st);
 
     input.close();
     input2.close();
@@ -412,3 +414,11 @@ void Menu::saveStudent(){
                 }
                 output.close();
     }
+
+void Menu::wait(Data &objStudent) {
+        string o;
+    cout << "Press ENTER to continue...";
+    cin.get(); // Aguarda a entrada de uma tecla
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    mainMenu(objStudent);
+}
