@@ -26,6 +26,7 @@ public:
     void readUC();
     void UCcount();
     void resgisteredStudents(Data &obj);
+    void request();
     vector<pair<UC,Class>> classuc;
     vector<Student> student;
     set<UC> ucs;

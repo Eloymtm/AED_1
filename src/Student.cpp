@@ -40,11 +40,11 @@ pair<UC,Class> Student::createpair(UC u1, Class c1){
     return make_pair(u1, c1);
 }
 ostream& operator<<(std::ostream& os, const UC& uc) {
-    os << "UC value: " << uc.uCode;
+    os << uc.uCode;
     return os;
 }
 ostream& operator<<(std::ostream& os, const Class& c) {
-    os << "UC value: " << c.classCode;
+    os << c.classCode;
     return os;
 }
 
