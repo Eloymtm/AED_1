@@ -159,6 +159,37 @@ void Data:: studentsClassesPerClasses(std:: string Class){
         std::cout << "UC : " << studentsPerUC[i].first << ", has " << studentsPerUC[i].second << " students" <<std::endl;
     }
 }
+void Data::createschedulec(std::vector<std::pair<UC, Class>> classuc, std::vector<Slot> schedule, std::string cl){
+    std::vector<Schedule> schedulef;
+    for(auto x: classuc){
+        if(x.second.getclassCode() == cl) {
+            for (auto y: schedule) {
+                if (y.getccode() == cl) {
+                    Schedule sch = Schedule(y.getuccode(), y.getweekday(), y.getstart(), y.getduration(), y.gettype());
+                    schedulef.push_back(sch);
+                }
+            }
+            break;
+        }
+    }
+
+}
+void Data::createschedules(std::vector<Student> classucst, std::vector<Slot> schedule, std::string st){
+    std::vector<Schedule> schedulef;
+    for(auto x: classucst){
+        if(x.getupcode() == st) {
+            for (auto y: schedule) {
+                if (y.getccode() == x.getccode() && y.getuccode() == x.getuccode()) {
+                    Schedule sch = Schedule(x.getuccode(), y.getweekday(), y.getstart(), y.getduration(), y.gettype());
+                    schedulef.push_back(sch);
+                }
+            }
+        }
+    }
+    for(auto x : schedulef){
+        std::cout<< x.getuccode() << " " << x.getweekday() << " " << x.getstart() << " " << x.getduration() << " " << x.gettype() << std::endl;
+    }
+}
 
 int Data:: ucsPerStudent(std::string studentCode){
     int count = 0;
