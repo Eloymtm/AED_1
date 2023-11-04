@@ -101,6 +101,55 @@ void Menu::MenuStudents(Data &obj) {
     int option = 0;
     std:: cin >> option;
 
+    while(true){
+        switch(option){
+            case 1:
+            {
+                obj.printAllStudents();
+                break;
+            }
+            case 2:
+            {
+                string uc_;
+                cout << "Insert UC:";
+                cin >> uc_;
+                obj.searchByUc(uc_);
+                break;
+            }
+            case 3:
+            {
+                string class_;
+                cout << "Insert Class: ";
+                cin >> class_;
+                obj.searchByClass(class_);
+                break;
+            }
+            case 4:
+            {
+                char year;
+                cout << "Insert year:";
+                cin >> year;
+                int n = 0;
+                obj.searchByYear(year,n, 0);
+                break;
+            }
+            case 5:
+            {
+                int o;
+                cout << "Number of n Uc's:";
+                cin >> o;
+                obj.UCcount(obj);
+                obj.nNumbers(o);
+                break;
+            }
+            case 6:
+                int n;
+                cout << "Number of Uc's: ";
+                cin >> n;
+                obj.nUcsWithStudentsPerUc(n);
+                break;
+        }
+    }
     if(option == 1){
             obj.printAllStudents();
     }
@@ -254,7 +303,7 @@ void Menu::Stfind() {
             cout << "|              ClassesMenu               |\n";
             cout << "|________________________________________|\n";
             readTurmas();
-        
+
         }*/
         /*void Menu::readTurmas(){
                 vector<Slot> schedule;
