@@ -30,6 +30,7 @@ public:
     vector<pair<UC,Class>> classuc;
     vector<Student> student;
     set<UC> ucs;
+    vector<Slot>schedule;
     list<UC> ucs1;
 
 };
