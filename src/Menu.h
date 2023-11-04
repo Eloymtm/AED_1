@@ -24,6 +24,7 @@ public:
     void Classfind();
     void Stfind();
     void readUC();
+    void saveStudent();
     void UCcount();
     void resgisteredStudents(Data &obj);
     vector<pair<UC,Class>> classuc;
