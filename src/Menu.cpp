@@ -51,7 +51,7 @@ void Menu::mainMenu(Data &objStudent){
         case 4:
 
             request();
-            mainMenu();
+            mainMenu(objStudent);
             wait(objStudent);
             break;
         case 5:
