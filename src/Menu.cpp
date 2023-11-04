@@ -354,3 +354,12 @@ void Menu::resgisteredStudents(Data &obj){
         cout << obj.yearOccupation(year);
     }
 }
+void Menu::saveStudent(){
+                ofstream output("../input/classes.csv");
+                output.clear();
+                output << "ClassCode,UcCode,Weekday,StartHour,Duration,Type\n";
+                for(int i = 0;i < classuc.size();i++){
+                    output << classuc[i].second.getclassCode() << " "<< classuc[i].first.getUC()<<  " " << schedule[i].getweekday() << " "<< schedule[i].getstart()<< " " << schedule[i].getduration()<< " " << schedule[i].gettype() << endl;
+                }
+                output.close();
+    }
