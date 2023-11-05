@@ -341,11 +341,11 @@ void Menu:: request(Data &obj){
 }
 
 void Menu::saveStudent(Data &obj){
-                ofstream output("../input/classes.csv");
+                ofstream output("../input/students_classes.csv");
                 output.clear();
-                output << "ClassCode,UcCode,Weekday,StartHour,Duration,Type\n";
-                for(int i = 0;i < classuc.size();i++){
-                    output << classuc[i].second.getclassCode() << " "<< classuc[i].first.getUC()<<  " " << schedule[i].getweekday() << " "<< schedule[i].getstart()<< " " << schedule[i].getduration()<< " " << schedule[i].gettype() << endl;
+                output << "StudentCode,StudentName,UcCode,ClassCode\n";
+                for(auto x : obj.studentClasses){
+                    output << x.second.getupcode() << ","<< x.second.getname()<<  "," << x.first.getUcCode() << ","<< x.first.getClassCode()<< endl;
                 }
                 output.close();
     }
