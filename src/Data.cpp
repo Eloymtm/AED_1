@@ -187,6 +187,9 @@ void Data::createschedulec(std::vector<std::pair<UC, Class>> classuc, std::vecto
             break;
         }
     }
+    for(auto x : schedulef){
+        std::cout<< x.getuccode() << " " << x.getweekday() << " " << x.getstart() << " " << x.getduration() << " " << x.gettype() << std::endl;
+    }
 
 }
 void Data::createschedules(std::vector<Student> classucst, std::vector<Slot> schedule, std::string st){
