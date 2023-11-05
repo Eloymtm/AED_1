@@ -31,6 +31,7 @@ void Menu::mainMenu(Data &objStudent){
         switch(opção){
 
         case 1:
+
             MenuStudents(objStudent);
             wait(objStudent);
             break;
@@ -41,7 +42,7 @@ void Menu::mainMenu(Data &objStudent){
                // mainMenu();
                 //break;
         case 2:
-            MenuSchedule();
+            MenuSchedule(objStudent);
             wait(objStudent);
             break;
         case 3:
@@ -49,7 +50,9 @@ void Menu::mainMenu(Data &objStudent){
             wait(objStudent);
             break;
         case 4:
-            //Request();
+
+            request();
+            mainMenu(objStudent);
             wait(objStudent);
             break;
         case 5:
@@ -57,6 +60,7 @@ void Menu::mainMenu(Data &objStudent){
             break;
         case 6:
             break;
+
     }
 }
 
@@ -118,7 +122,8 @@ void Menu::MenuStudents(Data &obj) {
         switch(c){
             case 1:
             {
-                obj.printAllStudents();
+                teste1(obj);
+                //obj.printAllStudents();
                 break;
             }
             case 2:
@@ -134,7 +139,10 @@ void Menu::MenuStudents(Data &obj) {
                 string class_;
                 cout << "Insert Class: ";
                 cin >> class_;
-                obj.searchByClass(class_);
+                string uc;
+                cout << "Insert UC: ";
+                cin >> uc;
+                obj.searchByClass(class_, uc);
                 break;
             }
             case 4:
@@ -175,10 +183,12 @@ void Menu::MenuStudents(Data &obj) {
 
     }
     else if (option == 3){
-            string class_;
+            string class_, uc;
             cout << "Insert Class: ";
             cin >> class_;
-            obj.searchByClass(class_);
+            cout << "Insert UC: ";
+            cin >> uc;
+            obj.searchByClass(class_, uc);
 
     }
   else if (option == 4){
@@ -209,8 +219,19 @@ void Menu::MenuStudents(Data &obj) {
     */
 }
 
-
-void Menu::MenuSchedule() {
+void Menu::teste1(Data &obj){
+    for(auto x : obj.studentClasses){
+    if(x.second.getname() == "Ludovico" && x.first.getUcCode() == "L.EIC021"){
+        ClassAndUC nobj =x.first;
+        nobj.setClassCode("OKOK");
+        continue;
+    }
+        ClassAndUC nobj =x.first;
+        nobj.setClassCode("OKOK");
+    }
+    saveStudent(obj);
+}
+void Menu::MenuSchedule(Data &obj) {
     int opção = 0;
     cout << "__________________________________________\n";
     cout << "|              ScheduleMenu              |\n";
@@ -222,7 +243,7 @@ void Menu::MenuSchedule() {
     switch (opção) {
         case 1:
             cout << "Class:";
-            Classfind();
+            Classfind(obj);
             break;
         case 2:
             cout<< "UpCode:";
@@ -233,9 +254,7 @@ void Menu::MenuSchedule() {
     }
 }
 
-void Menu::Classfind(){
-    vector<pair<UC,Class>> classuc;
-    vector<Slot> schedule;
+void Menu::Classfind(Data &obj){
     ifstream input("../input/classes.csv");
     if(!input.is_open()){
         cout << "Error: Unable to open file 1 \n";
@@ -252,15 +271,18 @@ void Menu::Classfind(){
         getline(in, duration, ',');
         getline(in, type, ',');
         UC u1 = UC(ucCode);
+        Student u = Student("alberto", "123");
         Class c1 = Class(classCode);
-        pair<UC,Class> copy = Student::createpair(u1, c1);
-        classuc.push_back(copy);
+        ClassAndUC copy = ClassAndUC(classCode,ucCode);
+        obj.addStudentsClasses(copy, u);
+        /*pair<UC,Class> copy = Student::createpair(u1, c1);
+        classuc.push_back(copy);*/
         Slot slot = Slot(ucCode, classCode, weekday,start,duration,type);
         schedule.push_back(slot);
     }
     string cl;
     cin >> cl;
-    Data::createschedulec(classuc, schedule, cl);
+    obj.createschedulec(schedule, cl);
     input.close();
 }
 
@@ -387,6 +409,7 @@ void Menu::Stfind() {
         input.close();
 
 }
+
 void Menu::resgisteredStudents(Data &obj){
 
     cout << "__________________________________________\n";
@@ -420,13 +443,43 @@ void Menu::resgisteredStudents(Data &obj){
         cout << obj.yearOccupation(year)<<std::endl;
     }
 }
+
+
+void Menu:: request(){
+
+    cout << "__________________________________________\n";
+    cout << "|          Student Requests              |\n";
+    cout << "|________________________________________|\n";
+    cout << "|                                        |\n";
+    cout << "|      1.Add UC                          |\n";
+    cout << "|      2.Add Class                       |\n";
+    cout << "|      3.Remove UC                       |\n";
+    cout << "|      4.Remove Class                    |\n";
+    cout << "|      5.SWitch UC                       |\n";
+    cout << "|      6.SWitch Class                    |\n";
+    cout << "|________________________________________|\n";
+    cout << "Your option:";
+    int option;
+    cin >> option;
+
+    if (option == 1){
+        string ucode, new_uc;
+        cout << "Student Code: " << endl;
+        cin >> ucode;
+        cout << "UC to add: " << endl;
+        cin >> new_uc;
+
+    }
+}
+
 void Menu::saveStudent(Data &objStudent){
-                ofstream output("../input/classes.csv");
+                ofstream output("../input/students_classes.csv");
                 output.clear();
-                output << "ClassCode,UcCode,Weekday,StartHour,Duration,Type\n";
-                for(int i = 0;i < classuc.size();i++){
-                    output << classuc[i].second.getclassCode() << " "<< classuc[i].first.getUC()<<  " " << schedule[i].getweekday() << " "<< schedule[i].getstart()<< " " << schedule[i].getduration()<< " " << schedule[i].gettype() << endl;
+                output << "StudentCode,StudentName,UcCode,ClassCode\n";
+                for(auto x : objStudent.studentClasses){
+                    output<< x.second.getupcode() << ","<< x.second.getname() << ","<< x.first.getUcCode()<< ","<< x.first.getClassCode() << endl;
                 }
+                //sort(objStudent.studentClasses.begin(),objStudent.studentClasses.end() );
                 output.close();
     }
 
@@ -437,3 +490,4 @@ void Menu::wait(Data &objStudent) {
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     mainMenu(objStudent);
 }
+

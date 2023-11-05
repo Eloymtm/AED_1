@@ -19,20 +19,23 @@ public:
     void mainMenu(Data &objStudent);
     void run();
     void MenuUC();
+    void teste1(Data &obj);
     void MenuStudents(Data &obj);
     void readStudents(Data &obj);
-    void MenuSchedule();
-    void Classfind();
+    void MenuSchedule(Data &obj);
+    void Classfind(Data &obj);
     void Stfind();
     void readUC();
     void saveStudent(Data &objStudent);
     void UCcount();
     void resgisteredStudents(Data &obj);
+    void request();
     void wait(Data &objStudent);
     vector<Slot>schedule;
     vector<pair<UC,Class>> classuc;
     vector<Student> student;
     set<UC> ucs;
+    //vector<Slot>schedule;
     list<UC> ucs1;
 
 };

@@ -10,8 +10,9 @@ public:
     std::string classCode;
     std::string ucCode;
     ClassAndUC(std::string classCode, std::string ucCode);
+    void setClassCode(const std::string &ccode_);
     std::string getUcCode() const;
-    std::string getClassCode() const;
+    std::string getClassCode()const;
     bool operator<(const ClassAndUC& c) const;
 
 };
