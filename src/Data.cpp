@@ -285,6 +285,53 @@ void Data::requestRemoveUc(std::string studentCode, std::string uc ){
     }
 }
 
+void Data::requestRemoveClass(std::string studentCode, std::string uc, std:: string classCode){
+    std:: string upcode, name;
+    std::string classcode, uccode;
+    for (auto x: studentClasses){
+        if(x.first.getUcCode()== uc and x.first.getClassCode() == classCode and x.second.getupcode() == studentCode)
+        {
+            classcode =x.first.getClassCode();
+            uccode = x.first.getUcCode();
+            upcode =x.second.getupcode();
+            name = x.second.getname();
+        }
+    }
+    ClassAndUC keyToRemove = ClassAndUC(classcode, uccode);
+    Student S = Student(name , upcode);
+    auto range = studentClasses.equal_range(keyToRemove);
+    for (auto it = range.first; it != range.second; ++it) {
+        if (it->second.getccode()== S.getccode() ) {
+            studentClasses.erase(it);
+
+            break;
+        }
+    }
+    for (auto &x : studentPerClass){
+        if(x.first.getClassCode() == classCode, x.first.getUcCode() == uc){
+            x.second--;
+            break;
+        }
+    }
+    for (auto &x : mStudentsPerClass){
+        if(x.first.getUcCode() == uc and x.first.getClassCode() == classCode){
+            x.second--;
+            break;
+        }
+    }
+    for (auto &x : studentsPerUC){
+        if(x.first.getUC() == uc){
+            x.second--;
+            break;
+        }
+    }
+    for (auto &x : mStudentsPerUC){
+        if(x.first.getUC() == uc){
+            x.second--;
+            break;
+        }
+    }
+}
 
 
 //void addUcClass(UC uc, Class class_)
