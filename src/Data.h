@@ -48,7 +48,7 @@ public :
     void nUcsWithStudentsPerUc(int n);
     void studentsPerClasses(std:: string Class);
     int ucsPerStudent(std::string studentCode);
-    void requestAddUc(std::string studentCode, std::string new_uc );
+    void requestAddUc(std::string studentCode,std::string new_uc );
     void requestRemoveUc(std::string studentCode, std::string uc );
     void requestRemoveClass(std::string studentCode, std::string uc, std:: string classCode);
     static void createschedulec(std::vector<std::pair<UC, Class>> classuc, std::vector<Slot> schedule, std::string cl);

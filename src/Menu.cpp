@@ -7,6 +7,7 @@ void Menu::run(){
     Data objStudent = Data();
     readStudents(objStudent);
     objStudent.addStudentsPerUc();
+    objStudent.addStudentsPerClass();
     mainMenu(objStudent);
 }
 
@@ -324,7 +325,6 @@ void Menu:: request(Data &obj) {
     cout << "Your option:";
     char option;
     cin >> option;
-
     switch (option) {
         case '1': {
             string ucode, new_uc;
