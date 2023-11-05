@@ -19,13 +19,17 @@ public:
     void mainMenu(Data &objStudent);
     void run();
     void MenuUC();
+    void teste1(Data &obj);
     void MenuStudents(Data &obj);
     void readStudents(Data &obj);
+
     void MenuSchedule(Data& obj);
     void Classfind(Data &obj);
     void Stfind(Data &obj);
     void readUC();
+
     void saveStudent(Data &obj);
+
     void UCcount();
     void resgisteredStudents(Data &obj);
     void request(Data &obj);

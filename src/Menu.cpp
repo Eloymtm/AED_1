@@ -383,3 +383,4 @@ void Menu::wait(Data &objStudent) {
     mainMenu(objStudent);
 }
 
+
