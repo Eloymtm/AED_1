@@ -10,9 +10,7 @@ void Menu::run(){
     mainMenu(objStudent);
 }
 void Menu::mainMenu(Data &objStudent){
-    int opção = 0;
-
-
+    char op;
         cout << "__________________________________________\n";
         cout << "|                MainMenu                |\n";
         cout << "|        Choose one of the options       |\n";
@@ -21,49 +19,42 @@ void Menu::mainMenu(Data &objStudent){
         cout << "|      2. SCHEDULE:                      |\n";
         cout << "|      3. REGISTERED STUDENTS:           |\n";
         cout << "|      4. REQUEST:                       |\n";
-        cout << "|      5. SAVE AND QUIT:                 |\n";
-        cout << "|      6. QUIT WITHOUT SAVING:           |\n";
+        cout << "|      \033[30m5. SAVE AND QUIT:\033[0m                 |\n";
+        cout << "|      \033[31m6. QUIT WITHOUT SAVING:\033[0m           |\n";
         cout << "|________________________________________|\n";
         cout << "Your option:";
-        cin >> opção;
+        cin >> op;
+        switch(op) {
+            case '1':
 
+                MenuStudents(objStudent);
+                wait(objStudent);
+                break;
+            case '2':
+                MenuSchedule(objStudent);
+                wait(objStudent);
+                break;
+            case '3':
+                resgisteredStudents(objStudent);
+                wait(objStudent);
+                break;
+            case '4':
 
-        switch(opção){
-
-        case 1:
-
-            MenuStudents(objStudent);
-            wait(objStudent);
-            break;
-           // case 2:
-
-                //MenuTurmas();
-               // MenuStudents();
-               // mainMenu();
-                //break;
-        case 2:
-            MenuSchedule(objStudent);
-            wait(objStudent);
-            break;
-        case 3:
-            resgisteredStudents(objStudent);
-            wait(objStudent);
-            break;
-        case 4:
-
-            request();
-            mainMenu(objStudent);
-            wait(objStudent);
-            break;
-        case 5:
-            saveStudent(objStudent);
-            break;
-        case 6:
-            break;
-
-    }
+                request();
+                mainMenu(objStudent);
+                wait(objStudent);
+                break;
+            case '5':
+                saveStudent(objStudent);
+                break;
+            case '6':
+                break;
+            default:
+                cout << "Invalid Option..." << endl;
+                wait(objStudent);
+                break;
+        }
 }
-
 void Menu::readStudents(Data &obj){
 
     ifstream input("../input/students_classes.csv");
@@ -109,24 +100,16 @@ void Menu::MenuStudents(Data &obj) {
     cout << "|          \033[31mPress B to go back.\033[0m           |\n";
     cout << "|________________________________________|\n";
     cout << "Your option:";
-    string option;
-    int c;
-    std:: cin >> option;
-        if(option=="1")option=1;
-        else if(option=="2") c=2;
-        else if(option=="3") c=3;
-        else if(option=="4") c=4;
-        else if(option=="5") c=5;
-        else if(option=="6") c=6;
-        else if(option=="B") c=7;
+    char c;
+    cin >> c;
         switch(c){
-            case 1:
+            case '1':
             {
-                teste1(obj);
+                //teste1(obj);
                 //obj.printAllStudents();
                 break;
             }
-            case 2:
+            case '2':
             {
                 string uc_;
                 cout << "Insert UC:";
@@ -134,7 +117,7 @@ void Menu::MenuStudents(Data &obj) {
                 obj.searchByUc(uc_);
                 break;
             }
-            case 3:
+            case '3':
             {
                 string class_;
                 cout << "Insert Class: ";
@@ -145,7 +128,7 @@ void Menu::MenuStudents(Data &obj) {
                 obj.searchByClass(class_, uc);
                 break;
             }
-            case 4:
+            case '4':
             {
                 char year;
                 cout << "Insert year:";
@@ -154,7 +137,7 @@ void Menu::MenuStudents(Data &obj) {
                 obj.searchByYear(year,n, 0);
                 break;
             }
-            case 5:
+            case '5':
             {
                 int o;
                 cout << "Number of n Uc's:";
@@ -163,13 +146,17 @@ void Menu::MenuStudents(Data &obj) {
                 obj.nNumbers(o);
                 break;
             }
-            case 6:
+            case '6':
                 int n;
                 cout << "Number of Uc's: ";
                 cin >> n;
                 obj.nUcsWithStudentsPerUc(n);
                 break;
-            case 7:
+            case 'B':
+                break;
+            default:
+                cout << "Invalid Option..." << endl;
+                MenuStudents(obj);
                 break;
     }/*
     if(option == 1){
