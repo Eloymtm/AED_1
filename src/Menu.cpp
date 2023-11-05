@@ -377,6 +377,7 @@ void Menu:: request(Data &obj) {
             request(obj);
             break;
         }
+
     }
 }
 void Menu::saveStudent(Data &obj){
