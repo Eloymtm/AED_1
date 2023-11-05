@@ -7,6 +7,7 @@ void Menu::run(){
     Data objStudent = Data();
     readStudents(objStudent);
     objStudent.addStudentsPerUc();
+    objStudent.addStudentsPerClass();
     mainMenu(objStudent);
 }
 
@@ -308,11 +309,14 @@ void Menu:: request(Data &obj){
     cin >> option;
 
     if (option == 1){
-        string ucode, new_uc;
+        string ucode, new_uc, studentName;
         cout << "Student Code: " << endl;
         cin >> ucode;
         cout << "UC to add: " << endl;
         cin >> new_uc;
+        obj.addRequest("Student " + ucode + " resquested registration to UC " + new_uc);
+        obj.requestAddUc(ucode, new_uc);
+
 
     }
     else if (option == 3){

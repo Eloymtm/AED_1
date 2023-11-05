@@ -218,8 +218,14 @@ int Data:: ucsPerStudent(std::string studentCode){
     return count;
 }
 
-void Data::requestAddUc(std::string studentCode, std::string new_uc ) {
+void Data::requestAddUc(std::string studentCode ,std::string new_uc ) {
     int ucs = ucsPerStudent(studentCode);
+    std::string studentName;
+    for(auto x: allStudents){
+        if(studentCode == x.getupcode())
+            studentName = x.getname();
+    }
+
     for (auto x: studentClasses) {
         if (x.second.getupcode() == studentCode and x.first.getUcCode() == new_uc) {
             std::cout << "Request Denied: Student already enrolled in this UC" << std::endl;
@@ -241,7 +247,7 @@ void Data::requestAddUc(std::string studentCode, std::string new_uc ) {
     int spaceInClass = 0;
     std::list<ClassAndUC> availableClasses;
     //student can only be enrolled to class if there are less than 30 students in that class
-    for (auto x: studentPerClass) {
+    for (auto x: mStudentsPerClass) {
         if (x.first.getUcCode() == new_uc and x.second < 30) {
             availableClasses.push_back(x.first);
             spaceInClass++;
@@ -250,6 +256,23 @@ void Data::requestAddUc(std::string studentCode, std::string new_uc ) {
     if (spaceInClass == 0) {
         std::cout << "Request Denied: No Class with vacancies " << std::endl;
         return;
+    }
+    std:: cout << availableClasses.front().getClassCode() << std::endl;
+    Student S = Student(studentName, studentCode);
+    addStudentsClasses(availableClasses.front(), S);
+    std:: cout << "Request accepted" << std:: endl;
+
+    for (auto &x : studentsPerUC){
+        if(x.first.getUC() == new_uc){
+            x.second++;
+            break;
+        }
+    }
+    for (auto &x : mStudentsPerUC){
+        if(x.first.getUC() == new_uc){
+            x.second++;
+            break;
+        }
     }
 }
 void Data::requestRemoveUc(std::string studentCode, std::string uc ){
