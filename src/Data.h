@@ -14,7 +14,6 @@
 #include <algorithm>
 
 
-
 class Data {
 public :
     std::vector<Student> student;
@@ -45,7 +44,7 @@ public :
     int yearOccupation(char year);
     void nUcsWithStudentsPerUc(int n);
 
-    void studentsClassesPerClasses(std:: string Class);
+    void studentsPerClasses(std:: string Class);
     int ucsPerStudent(std::string studentCode);
     void requestAddUc(std::string studentCode, std::string new_uc );
     static void createschedulec(std::vector<std::pair<UC, Class>> classuc, std::vector<Slot> schedule, std::string cl);
