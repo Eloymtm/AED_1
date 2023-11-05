@@ -6,6 +6,15 @@ void Data:: addAllStudents(Student student) {
     this->student.push_back(student);
 }
 
+void Data:: addSchedule(Slot s){
+    this->schedule.push_back(s);
+}
+void Data:: printS(){
+    for (auto x: schedule){
+        std::cout << x.gettype() << std::endl;
+    }
+}
+
 void Data:: printAllStudents(){
 
     for (auto x: allStudents){
@@ -150,7 +159,7 @@ void Data::nUcsWithStudentsPerUc(int n){
     }
 
 }
-void Data:: studentsClassesPerClasses(std:: string Class){
+void Data:: studentsPerClasses(std:: string Class){
     std::vector<std::pair<ClassAndUC, int>> studentPerClass(mStudentsPerClass.begin(), mStudentsPerClass.end());
     std::sort(studentsPerUC.begin(), studentsPerUC.end(), [](const auto& a, const auto& b) {
         return a.second > b.second;
@@ -175,7 +184,7 @@ void Data::createschedulec(std::vector<Slot> schedule, std::string cl){
 
 }
 void Data::createschedules(std::vector<Student> classucst, std::vector<Slot> schedule, std::string st){
-    std::vector<Schedule> schedulef;
+
     for(auto x: classucst){
         if(x.getupcode() == st) {
             for (auto y: schedule) {
@@ -200,14 +209,81 @@ int Data:: ucsPerStudent(std::string studentCode){
     return count;
 }
 
-void Data::requestAddUc(std::string studentCode, std::string new_uc ){
+
+void Data::readTurmas(std::string uc, std::vector<Slot> &slots){
+    std::ifstream input("../input/classes.csv");
+    if(!input.is_open()){
+        std::cout << "Error: Unable to open file 1 \n";
+    }
+    std::string line;
+    getline (input, line);
+    while(getline(input, line)){
+        std::istringstream in (line);
+        std::string classCode, ucCode, weekday, start, duration, type;
+        getline(in,classCode, ',');
+        getline(in, ucCode, ',');
+        getline(in, weekday, ',');
+        getline(in,start,',');
+        getline(in, duration, ',');
+        getline(in, type, ',');
+        Slot s = Slot(ucCode, classCode, weekday,start,duration,type);
+        if(ucCode == uc)
+            slots.push_back(s);
+    }
+    input.close();
+}
+
+
+void Data::requestAddUc(std::string studentCode, std::string new_uc ) {
     int ucs = ucsPerStudent(studentCode);
-    if (ucs >= 7){
-        std:: cout << "Request Denied" << std::endl;
+    for (auto x: studentClasses) {
+        if (x.second.getupcode() == studentCode and x.first.getUcCode() == new_uc) {
+            std::cout << "Request Denied: Student already enrolled in this UC" << std::endl;
+            return;
+        }
+    }
+    bool studentExists = 0;
+    for (auto x: allStudents) {
+        if (x.getupcode() == studentCode)
+            studentExists = 1;
+    }
+    if (!studentExists)
+        std::cout << "Request Denied: Student not found" << std::endl;
+
+    if (ucs >= 7) {
+        std::cout << "Request Denied: Student already enrolled in 7 UC's" << std::endl;
         return;
+    }
+    int spaceInClass = 0;
+    std::list<ClassAndUC> availableClasses;
+    //student can only be enrolled to class if there are less than 30 students in that class
+    for (auto x: studentPerClass) {
+        if (x.first.getUcCode() == new_uc and x.second < 30) {
+            availableClasses.push_back(x.first);
+            spaceInClass++;
+        }
+    }
+    if (spaceInClass == 0) {
+        std::cout << "Request Denied: No Class with vacancies " << std::endl;
+        return;
+    }
+    bool possible = 0;
+    std:: vector<Slot> slots;
+
+    for (auto x: availableClasses){
+        readTurmas(x.getUcCode(), slots);
+        for(auto x: schedulef){
+            //if(x.getuccode() == new_uc)
+        }
+        if (possible == 1){
+            //fica ja nesta turma e sai da função tem e de guardar a UC nova e mudar no vetor
+            //mudar em studentsClasses
+            break;
+        }
     }
 
 }
+
 
 
 //void addUcClass(UC uc, Class class_)

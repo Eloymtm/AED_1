@@ -8,6 +8,7 @@ void Menu::run(){
     readStudents(objStudent);
     objStudent.addStudentsPerUc();
     mainMenu(objStudent);
+
 }
 void Menu::mainMenu(Data &objStudent){
     char op;
@@ -39,7 +40,6 @@ void Menu::mainMenu(Data &objStudent){
                 wait(objStudent);
                 break;
             case '4':
-
                 request();
                 mainMenu(objStudent);
                 wait(objStudent);
@@ -158,54 +158,7 @@ void Menu::MenuStudents(Data &obj) {
                 cout << "Invalid Option..." << endl;
                 MenuStudents(obj);
                 break;
-    }/*
-    if(option == 1){
-            obj.printAllStudents();
     }
-    else if (option == 2){
-            string uc_;
-            cout << "Insert UC: ";
-            cin >> uc_;
-            obj.searchByUc(uc_);
-
-    }
-    else if (option == 3){
-            string class_, uc;
-            cout << "Insert Class: ";
-            cin >> class_;
-            cout << "Insert UC: ";
-            cin >> uc;
-            obj.searchByClass(class_, uc);
-
-    }
-  else if (option == 4){
-        char year;
-        cout << "Insert year:";
-        cin >> year;
-        int n = 0;
-        obj.searchByYear(year,n, 0);
-    }
-    else if(option == 5){
-        int o;
-        cout << "Number of n Uc's:";
-        cin >> o;
-        obj.UCcount(obj);
-        obj.nNumbers(o);
-    }
-    else if (option == 6)
-    {
-        int n;
-        cout << "Number of Uc's: ";
-        cin >> n;
-        obj.nUcsWithStudentsPerUc(n);
-    }
-    else if(option == 'B'){
-
-    }
-    
-    */
-}
-
 void Menu::teste1(Data &obj){
     for(auto x : obj.studentClasses){
     if(x.second.getname() == "Ludovico" && x.first.getUcCode() == "L.EIC021"){
@@ -218,8 +171,9 @@ void Menu::teste1(Data &obj){
     }
     saveStudent(obj);
 }
-void Menu::MenuSchedule(Data &obj) {
-    int opção = 0;
+
+void Menu::MenuSchedule(Data& obj) {
+    char opção;
     cout << "__________________________________________\n";
     cout << "|              ScheduleMenu              |\n";
     cout << "|________________________________________|\n";
@@ -228,20 +182,25 @@ void Menu::MenuSchedule(Data &obj) {
     cout << "|________________________________________|\n";
     cin >> opção;
     switch (opção) {
-        case 1:
+        case '1':
             cout << "Class:";
             Classfind(obj);
             break;
-        case 2:
+        case '2':
             cout<< "UpCode:";
-            Stfind();
+            Stfind(obj);
             break;
-        case 3:
+        case '3':
+            break;
+      default:
+            cout << "Invalid Option..." << endl;
+            MenuSchedule(obj);
             break;
     }
 }
 
 void Menu::Classfind(Data &obj){
+
     ifstream input("../input/classes.csv");
     if(!input.is_open()){
         cout << "Error: Unable to open file 1 \n";
@@ -269,11 +228,11 @@ void Menu::Classfind(Data &obj){
     }
     string cl;
     cin >> cl;
-    obj.createschedulec(schedule, cl);
+    obj.createschedulec(classuc, schedule, cl);
     input.close();
 }
 
-void Menu::Stfind() {
+void Menu::Stfind(Data &obj) {
     vector<Student> classucst;
     ifstream input("../input/students_classes.csv");
     if(!input.is_open()){
@@ -295,7 +254,7 @@ void Menu::Stfind() {
         classucst.push_back(copy);
 
     }
-    vector<Slot> schedule;
+    //vector<Slot> schedule;
     ifstream input2("../input/classes.csv");
     if(!input2.is_open()){
         cout << "Error: Unable to open file 1 \n";
@@ -317,7 +276,7 @@ void Menu::Stfind() {
     }
     string st;
     cin >> st;
-    Data::createschedules(classucst, schedule, st);
+    obj.createschedules(classucst, schedule, st);
 
     input.close();
     input2.close();

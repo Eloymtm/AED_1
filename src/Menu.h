@@ -22,9 +22,10 @@ public:
     void teste1(Data &obj);
     void MenuStudents(Data &obj);
     void readStudents(Data &obj);
-    void MenuSchedule(Data &obj);
+
+    void MenuSchedule(Data& obj);
     void Classfind(Data &obj);
-    void Stfind();
+    void Stfind(Data &obj);
     void readUC();
     void saveStudent(Data &objStudent);
     void UCcount();
