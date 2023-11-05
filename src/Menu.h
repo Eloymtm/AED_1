@@ -25,7 +25,7 @@ public:
     void Classfind(Data &obj);
     void Stfind(Data &obj);
     void readUC();
-    void saveStudent();
+    void saveStudent(Data &obj);
     void UCcount();
     void resgisteredStudents(Data &obj);
     void request(Data &obj);
