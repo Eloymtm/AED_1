@@ -61,7 +61,6 @@ void Menu::readStudents(Data &obj){
 
     ifstream input("../input/students_classes.csv");
     if(!input.is_open()){
-        //perror("Error opening file"); -> acho que só deviamos usar uma
         cout << "Error: Unable to open file 2 \n";}
     string line;
     getline(input, line);
@@ -86,7 +85,6 @@ void Menu::readStudents(Data &obj){
 }
 
 void Menu::MenuStudents(Data &obj) {
-    //readStudents(obj);
     cout << "__________________________________________\n";
     cout << "|              StudentsMenu              |\n";
     cout << "|________________________________________|\n";
@@ -105,7 +103,6 @@ void Menu::MenuStudents(Data &obj) {
     cin >> c;
     switch (c){
         case '1': {
-            //teste1(obj);
             obj.printAllStudents();
             break;
         }
@@ -259,37 +256,6 @@ void Menu::Stfind() {
     input.close();
     input2.close();
 }
-
-
-    /*void Menu::MenuUC(){
-
-        cout << "__________________________________________\n";
-        cout << "|                 UCMenu                 |\n";
-        cout << "|________________________________________|\n";
-        readUC();
-
-    }
-    void Menu::readUC(){
-        ifstream input("../input/classes_per_uc.csv");
-        if(!input.is_open())
-            cout << "Error: Unable to open file 3 \n";
-        string line;
-        getline (input, line);
-        while(getline(input, line)){
-            istringstream in (line);
-            string classCode, ucCode;
-            getline(in,classCode,',');
-            getline(in, ucCode, ',');
-
-            UC u = UC(ucCode);
-            ucs1.push_back(u);
-        }
-        for (auto x: ucs){
-            cout << x << endl;
-        }
-        input.close();
-
-}*/
 
 void Menu::resgisteredStudents(Data &obj) {
 
