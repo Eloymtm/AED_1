@@ -8,6 +8,7 @@ void Menu::run(){
     readStudents(objStudent);
     objStudent.addStudentsPerUc();
     mainMenu(objStudent);
+
 }
 void Menu::mainMenu(Data &objStudent){
     int opção = 0;
@@ -41,7 +42,7 @@ void Menu::mainMenu(Data &objStudent){
                // mainMenu();
                 //break;
         case 2:
-            MenuSchedule();
+            MenuSchedule(objStudent);
             wait(objStudent);
             break;
         case 3:
@@ -203,7 +204,7 @@ void Menu::MenuStudents(Data &obj) {
 }
 
 
-void Menu::MenuSchedule() {
+void Menu::MenuSchedule(Data& obj) {
     int opção = 0;
     cout << "__________________________________________\n";
     cout << "|              ScheduleMenu              |\n";
@@ -215,18 +216,18 @@ void Menu::MenuSchedule() {
     switch (opção) {
         case 1:
             cout << "Class:";
-            Classfind();
+            Classfind(obj);
             break;
         case 2:
             cout<< "UpCode:";
-            Stfind();
+            Stfind(obj);
             break;
         case 3:
             break;
     }
 }
 
-void Menu::Classfind(){
+void Menu::Classfind(Data &obj){
     vector<pair<UC,Class>> classuc;
     vector<Slot> schedule;
     ifstream input("../input/classes.csv");
@@ -253,11 +254,11 @@ void Menu::Classfind(){
     }
     string cl;
     cin >> cl;
-    Data::createschedulec(classuc, schedule, cl);
+    obj.createschedulec(classuc, schedule, cl);
     input.close();
 }
 
-void Menu::Stfind() {
+void Menu::Stfind(Data &obj) {
     vector<Student> classucst;
     ifstream input("../input/students_classes.csv");
     if(!input.is_open()){
@@ -279,7 +280,7 @@ void Menu::Stfind() {
         classucst.push_back(copy);
 
     }
-    vector<Slot> schedule;
+    //vector<Slot> schedule;
     ifstream input2("../input/classes.csv");
     if(!input2.is_open()){
         cout << "Error: Unable to open file 1 \n";
@@ -301,7 +302,7 @@ void Menu::Stfind() {
     }
     string st;
     cin >> st;
-    Data::createschedules(classucst, schedule, st);
+    obj.createschedules(classucst, schedule, st);
 
     input.close();
     input2.close();

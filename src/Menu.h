@@ -21,9 +21,9 @@ public:
     void MenuUC();
     void MenuStudents(Data &obj);
     void readStudents(Data &obj);
-    void MenuSchedule();
-    void Classfind();
-    void Stfind();
+    void MenuSchedule(Data& obj);
+    void Classfind(Data &obj);
+    void Stfind(Data &obj);
     void readUC();
     void saveStudent();
     void UCcount();
