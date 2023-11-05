@@ -51,7 +51,7 @@ void Menu::mainMenu(Data &objStudent){
             break;
         case 4:
 
-            request();
+            request(objStudent);
             mainMenu(objStudent);
             wait(objStudent);
             break;
@@ -416,7 +416,7 @@ void Menu::resgisteredStudents(Data &obj){
 }
 
 
-void Menu:: request(){
+void Menu:: request( Data &obj){
 
     cout << "__________________________________________\n";
     cout << "|          Student Requests              |\n";
@@ -440,6 +440,14 @@ void Menu:: request(){
         cout << "UC to add: " << endl;
         cin >> new_uc;
 
+    }
+    else if (option == 3){
+        string studentcode, uc;
+        cout << "Student Code: " << endl;
+        cin >> studentcode;
+        cout << "UC to remove: " << endl;
+        cin >> uc;
+        obj.requestRemoveUc(studentcode, uc);
     }
 }
 
