@@ -19,9 +19,10 @@
 
 class Data {
 public :
+    std::vector<Schedule> schedulef;
     std::vector<Student> student;
     std::set<Student> allStudents;
-    std::multimap <ClassAndUC, Student> studentClasses;
+    std::multimap <const ClassAndUC, Student> studentClasses;
     std::map <UC, Class> ucClass;
 
     std::map<UC, int> mStudentsPerUC;
@@ -40,7 +41,7 @@ public :
     void printAllStudents();
     void UCcount(Data &obj);
     void nNumbers(int o);
-    void addStudentsClasses(ClassAndUC uc, Student student);
+    void addStudentsClasses(const ClassAndUC uc, Student student);
     void addStudentsPerUc();
     void addStudentsPerClass();
     void searchByUc(std::string UC);
@@ -55,6 +56,7 @@ public :
     int ucsPerStudent(std::string studentCode);
     void readTurmas(std::string uc, std::vector<Slot> &slots);
     void requestAddUc(std::string studentCode, std::string new_uc );
+
     void createschedulec(std::vector<std::pair<UC, Class>> classuc, std::vector<Slot> schedule, std::string cl);
     void createschedules(std::vector<Student> classucst, std::vector<Slot> schedule, std::string st);
 

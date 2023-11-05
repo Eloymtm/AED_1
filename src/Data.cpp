@@ -23,7 +23,7 @@ void Data:: printAllStudents(){
     }
 }
 
-void Data:: addStudentsClasses(ClassAndUC const classes, Student student)
+void Data:: addStudentsClasses(ClassAndUC classes, Student student)
 {
     this->studentClasses.insert(std::pair<ClassAndUC, Student> (classes, student));
 }
@@ -168,10 +168,10 @@ void Data:: studentsPerClasses(std:: string Class){
         std::cout << "UC : " << studentsPerUC[i].first << ", has " << studentsPerUC[i].second << " students" <<std::endl;
     }
 }
-void Data::createschedulec(std::vector<std::pair<UC, Class>> classuc, std::vector<Slot> schedule, std::string cl){
-    std::vector<Schedule> schedulef;
-    for(auto x: classuc){
-        if(x.second.getclassCode() == cl) {
+
+void Data::createschedulec(std::vector<Slot> schedule, std::string cl){
+    for(auto x: studentClasses){
+        if(x.first.getClassCode() == cl) {
             for (auto y: schedule) {
                 if (y.getccode() == cl) {
                     Schedule sch = Schedule(y.getuccode(), y.getweekday(), y.getstart(), y.getduration(), y.gettype());

@@ -5,9 +5,12 @@ ClassAndUC:: ClassAndUC(std::string classCode, std::string ucCode){
     this->ucCode = ucCode;
 }
 
-std::string ClassAndUC:: getClassCode() const
+std::string ClassAndUC:: getClassCode()const
 {
     return this->classCode;
+}
+void ClassAndUC::setClassCode(const std::string &ccode_){
+    this->classCode = ccode_;
 }
 std::string ClassAndUC:: getUcCode() const
 {
