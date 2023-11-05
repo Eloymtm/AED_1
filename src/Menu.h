@@ -21,6 +21,7 @@ public:
     void MenuUC();
     void MenuStudents(Data &obj);
     void readStudents(Data &obj);
+    bool compareClassAndUC(const std::pair<ClassAndUC, Student>& a, const std::pair<ClassAndUC, Student>& b);
     void MenuSchedule(Data &obj);
     void Classfind();
     void Stfind();
