@@ -335,6 +335,7 @@ void Menu:: request(Data &obj){
     cout << "|      4.Remove Class                    |\n";
     cout << "|      5.SWitch UC                       |\n";
     cout << "|      6.SWitch Class                    |\n";
+    cout << "|      7.See all Requests                |\n";
     cout << "|________________________________________|\n";
     cout << "Your option:";
     int option;
@@ -354,7 +355,11 @@ void Menu:: request(Data &obj){
         cin >> studentcode;
         cout << "UC to remove: " << endl;
         cin >> uc;
+        obj.addRequest( "Student " + studentcode + " resquested removal of UC " + uc);
         obj.requestRemoveUc(studentcode, uc);
+    }
+    else if(option == 7){
+        obj.printRequest();
     }
 }
 

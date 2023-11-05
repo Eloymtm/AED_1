@@ -11,6 +11,7 @@
 #include <vector>
 #include <utility>
 #include <list>
+#include <queue>
 #include <algorithm>
 
 
@@ -20,7 +21,7 @@ public :
     std::set<Student> allStudents;
     std::multimap <ClassAndUC, Student> studentClasses;
     std::map <UC, Class> ucClass;
-
+    std::queue <std::string> requestsmade;
     std::map<UC, int> mStudentsPerUC;
     std::vector<std::pair<UC, int>>studentsPerUC;
     std::map<ClassAndUC, int> mStudentsPerClass;
@@ -31,6 +32,8 @@ public :
     std::vector<std::pair<Student, int>> count;
     void addAllStudents(Student student);
     void printAllStudents();
+    void addRequest(std:: string r);
+    void printRequest();
     void UCcount(Data &obj);
     void nNumbers(int o);
     void addStudentsClasses(ClassAndUC uc, Student student);

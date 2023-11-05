@@ -6,6 +6,21 @@ void Data:: addAllStudents(Student student) {
     this->student.push_back(student);
 }
 
+void Data::addRequest(std:: string r){
+    this->requestsmade.push(r);
+}
+
+
+void Data:: printRequest(){
+    while (!requestsmade.empty()) {
+        std:: string frontElement = requestsmade.front();
+        std::cout << frontElement << " " << std::endl;
+
+        requestsmade.pop();
+    }
+
+
+}
 void Data:: printAllStudents(){
 
     for (auto x: allStudents){
@@ -240,7 +255,6 @@ void Data::requestRemoveUc(std::string studentCode, std::string uc ){
     for (auto x: studentClasses){
         if(x.first.getUcCode()== uc and x.second.getupcode() == studentCode)
         {
-            std::cout << "aaa"<< std::endl;
             classcode =x.first.getClassCode();
             uccode = x.first.getUcCode();
             upcode =x.second.getupcode();
@@ -253,11 +267,24 @@ void Data::requestRemoveUc(std::string studentCode, std::string uc ){
     for (auto it = range.first; it != range.second; ++it) {
         if (it->second.getccode()== S.getccode() ) {
             studentClasses.erase(it);
-            std::cout << "ai ai ai" << std::endl;
+
+            break;
+        }
+    }
+    for (auto &x : studentsPerUC){
+        if(x.first.getUC() == uc){
+            x.second--;
+            break;
+        }
+    }
+    for (auto &x : mStudentsPerUC){
+        if(x.first.getUC() == uc){
+            x.second--;
             break;
         }
     }
 }
+
 
 
 //void addUcClass(UC uc, Class class_)
