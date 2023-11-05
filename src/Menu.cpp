@@ -227,6 +227,7 @@ void Menu::MenuSchedule(Data& obj) {
     }
 }
 
+
 void Menu::Classfind(Data &obj){
     vector<pair<UC,Class>> classuc;
     vector<Slot> schedule;
