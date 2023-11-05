@@ -32,6 +32,7 @@ public :
     std::vector<Schedule> schedulef;
     std::vector<Slot> schedule;
 
+
     //std::map <int, UC> studentsPerUC;
 
     std::vector<std::pair<Student, int>> count;
@@ -59,6 +60,7 @@ public :
 
     void createschedulec(std::vector<std::pair<UC, Class>> classuc, std::vector<Slot> schedule, std::string cl);
     void createschedules(std::vector<Student> classucst, std::vector<Slot> schedule, std::string st);
+    void requestRemoveUc(std::string studentCode, std::string uc );
 
 
 
