@@ -4,6 +4,8 @@
 #include <iostream>
 #include <set>
 #include <map>
+#include <fstream>
+#include <istream>
 #include "Student.h"
 #include "ClassandUc.h"
 #include "Schedule.h"
@@ -11,29 +13,36 @@
 #include <vector>
 #include <utility>
 #include <list>
+#include <sstream>
 #include <algorithm>
 
 
 class Data {
 public :
+    std::vector<Schedule> schedulef;
     std::vector<Student> student;
     std::set<Student> allStudents;
-    std::multimap <ClassAndUC, Student> studentClasses;
+    std::multimap <const ClassAndUC, Student> studentClasses;
     std::map <UC, Class> ucClass;
 
     std::map<UC, int> mStudentsPerUC;
     std::vector<std::pair<UC, int>>studentsPerUC;
     std::map<ClassAndUC, int> mStudentsPerClass;
     std::vector<std::pair<ClassAndUC, int>>  studentPerClass;
+    std::vector<Schedule> schedulef;
+    std::vector<Slot> schedule;
+
 
     //std::map <int, UC> studentsPerUC;
 
     std::vector<std::pair<Student, int>> count;
+    void addSchedule(Slot s);
+    void printS();
     void addAllStudents(Student student);
     void printAllStudents();
     void UCcount(Data &obj);
     void nNumbers(int o);
-    void addStudentsClasses(ClassAndUC uc, Student student);
+    void addStudentsClasses(const ClassAndUC uc, Student student);
     void addStudentsPerUc();
     void addStudentsPerClass();
     void searchByUc(std::string UC);
@@ -46,9 +55,12 @@ public :
 
     void studentsPerClasses(std:: string Class);
     int ucsPerStudent(std::string studentCode);
+    void readTurmas(std::string uc, std::vector<Slot> &slots);
     void requestAddUc(std::string studentCode, std::string new_uc );
-    static void createschedulec(std::vector<std::pair<UC, Class>> classuc, std::vector<Slot> schedule, std::string cl);
-    static void createschedules(std::vector<Student> classucst, std::vector<Slot> schedule, std::string st);
+
+    void createschedulec(std::vector<std::pair<UC, Class>> classuc, std::vector<Slot> schedule, std::string cl);
+    void createschedules(std::vector<Student> classucst, std::vector<Slot> schedule, std::string st);
+    void requestRemoveUc(std::string studentCode, std::string uc );
 
 
 
