@@ -332,12 +332,10 @@ void Menu:: request(Data &obj) {
             cin >> ucode;
             cout << "UC to add: " << endl;
             cin >> new_uc;
-            obj.requestAddUc(ucode, new_uc);
-            obj.addRequest("Student " + ucode + " resquested registration in class  " + new_uc);
             wait(obj);
             break;
         }
-        case '2':
+        case '2': {
             string ucode, new_uc, class_;
             cout << "Student Code: " << endl;
             cin >> ucode;
@@ -345,10 +343,11 @@ void Menu:: request(Data &obj) {
             cin >> new_uc;
             cout << "Class to add: " << endl;
             cin >> class_;
-            obj.addRequest("Student " + ucode + " resquested registration in class  " + class_ );
+            obj.addRequest("Student " + ucode + " resquested registration in class  " + class_);
             obj.requestAddClass(ucode, class_, new_uc);
             wait(obj);
             break;
+        }
         case '3': {
             string studentcode, uc;
             cout << "Student Code: " << endl;
