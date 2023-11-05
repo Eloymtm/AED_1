@@ -267,30 +267,47 @@ void Menu::resgisteredStudents(Data &obj) {
     cout << "|      1.Search by UC                    |\n";
     cout << "|      2.Search by Class                 |\n";
     cout << "|      3.Search by Year                  |\n";
+    cout << "|          \033[31mPress B to go back.\033[0m           |\n";
     cout << "|________________________________________|\n";
     cout << "Your option:";
 
-    int option = 0;
+    char option;
     cin >> option;
-    if (option == 1) {
-        cout << "Insert UC: ";
-        string uc;
-        cin >> uc;
-        cout << obj.ucOccupation(uc) << std::endl;
-    } else if (option == 2) {
-        cout << "Insert Class: ";
-        string class_;
-        cin >> class_;
-        cout << obj.classOccupation(class_) << std::endl;
-    } else if (option == 3) {
-        cout << "Insert Year: ";
-        char year;
-        cin >> year;
-        cout << obj.yearOccupation(year) << std::endl;
+    switch(option){
+        case '1':
+        {
+            cout << "Insert UC: ";
+            string uc;
+            cin >> uc;
+            cout << obj.ucOccupation(uc) << std::endl;
+            break;
+        }
+        case '2':
+        {
+            cout << "Insert Class: ";
+            string class_;
+            cin >> class_;
+            cout << obj.classOccupation(class_) << std::endl;
+            break;
+        }
+        case '3':
+        {
+            cout << "Insert Year: ";
+            char year;
+            cin >> year;
+            cout << obj.yearOccupation(year) << std::endl;
+            break;
+        }
+        case 'B':
+            break;
+        default:
+            cout << "Invalid Option..." << endl;
+            resgisteredStudents(obj);
+            break;
     }
 }
 
-void Menu:: request(Data &obj){
+void Menu:: request(Data &obj) {
 
     cout << "__________________________________________\n";
     cout << "|          Student Requests              |\n";
@@ -303,55 +320,72 @@ void Menu:: request(Data &obj){
     cout << "|      5.SWitch UC                       |\n";
     cout << "|      6.SWitch Class                    |\n";
     cout << "|      7.See all Requests                |\n";
+    cout << "|          \033[31mPress B to go back.\033[0m           |\n";
     cout << "|________________________________________|\n";
     cout << "Your option:";
-    int option;
+    char option;
     cin >> option;
+    switch (option) {
+        case '1': {
+            string ucode, new_uc;
+            cout << "Student Code: " << endl;
+            cin >> ucode;
+            cout << "UC to add: " << endl;
+            cin >> new_uc;
+            wait(obj);
+            break;
+        }
+        case '2':
+            std::cout << "ESTÁ EM OBRAS ABRIRÁ BREVEMENTE\n";
+            wait(obj);
+            break;
+        case '3': {
+            string studentcode, uc;
+            cout << "Student Code: " << endl;
+            cin >> studentcode;
+            cout << "UC to remove: " << endl;
+            cin >> uc;
+            obj.addRequest("Student " + studentcode + " resquested removal of UC " + uc);
+            obj.requestRemoveUc(studentcode, uc);
+            wait(obj);
+            break;
+        }
+        case '4': {
+            string studentcode, uc, classCode;
+            cout << "Student Code: " << endl;
+            cin >> studentcode;
+            cout << "UC: " << endl;
+            cin >> uc;
+            cout << "Class to remove: " << endl;
+            cin >> classCode;
+            obj.addRequest("Student " + studentcode + " resquested removal of Class " + classCode + " from UC " + uc);
+            obj.requestRemoveClass(studentcode, uc, classCode);
+            wait(obj);
+            break;
+        }
+        case '7': {
+            obj.printRequest();
+            wait(obj);
+            break;
+        }
+        case 'B':
+            mainMenu(obj);
+            break;
 
-    if (option == 1){
-        string ucode, new_uc, studentName;
-        cout << "Student Code: " << endl;
-        cin >> ucode;
-        cout << "UC to add: " << endl;
-        cin >> new_uc;
-        obj.addRequest("Student " + ucode + " resquested registration to UC " + new_uc);
-        obj.requestAddUc(ucode, new_uc);
+        default: {
+            cout << "Invalid Option..." << endl;
+            request(obj);
+            break;
+        }
 
-
-    }
-
-    else if (option == 3){
-        string studentcode, uc;
-        cout << "Student Code: " << endl;
-        cin >> studentcode;
-        cout << "UC to remove: " << endl;
-        cin >> uc;
-        obj.addRequest( "Student " + studentcode + " resquested removal of UC " + uc);
-        obj.requestRemoveUc(studentcode, uc);
-    }
-
-    else if (option == 4){
-        string studentcode, uc, classCode;
-        cout << "Student Code: " << endl;
-        cin >> studentcode;
-        cout << "UC: " << endl;
-        cin >> uc;
-        cout << "Class to remove: " << endl;
-        cin >> classCode;
-        obj.addRequest( "Student " + studentcode + " resquested removal of Class " + classCode + " from UC " + uc);
-        obj.requestRemoveClass(studentcode, uc, classCode);
-    }
-    else if(option == 7){
-        obj.printRequest();
     }
 }
-
 void Menu::saveStudent(Data &obj){
-                ofstream output("../input/classes.csv");
+                ofstream output("../input/students_classes.csv");
                 output.clear();
-                output << "ClassCode,UcCode,Weekday,StartHour,Duration,Type\n";
-                for(int i = 0;i < classuc.size();i++){
-                    output << classuc[i].second.getclassCode() << " "<< classuc[i].first.getUC()<<  " " << schedule[i].getweekday() << " "<< schedule[i].getstart()<< " " << schedule[i].getduration()<< " " << schedule[i].gettype() << endl;
+                output << "StudentCode,StudentName,UcCode,ClassCode\n";
+                for(auto x : obj.studentClasses){
+                    output << x.second.getupcode() << ","<< x.second.getname()<<  "," << x.first.getUcCode() << ","<< x.first.getClassCode()<< endl;
                 }
                 output.close();
     }

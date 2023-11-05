@@ -14,7 +14,7 @@ Student::Student(std::string uccode, std::string ccode, std::string upcode){
 UC::UC(std::string uCode) {
     this->uCode = uCode;
 }
-Student::Student (){}
+Student::Student(){}
 Class::Class(std::string classCode) {
     this->classCode = classCode;
 }
