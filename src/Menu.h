@@ -21,14 +21,14 @@ public:
     void MenuUC();
     void MenuStudents(Data &obj);
     void readStudents(Data &obj);
-    void MenuSchedule();
+    void MenuSchedule(Data &obj);
     void Classfind();
     void Stfind();
     void readUC();
-    void saveStudent();
+    void saveStudent(Data &obj);
     void UCcount();
     void resgisteredStudents(Data &obj);
-    void request();
+    void request(Data &obj);
     void wait(Data &objStudent);
     vector<Slot>schedule;
     vector<pair<UC,Class>> classuc;

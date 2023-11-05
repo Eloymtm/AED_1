@@ -9,57 +9,51 @@ void Menu::run(){
     objStudent.addStudentsPerUc();
     mainMenu(objStudent);
 }
+
+
 void Menu::mainMenu(Data &objStudent){
-    int opção = 0;
-
-
-        cout << "__________________________________________\n";
-        cout << "|                MainMenu                |\n";
-        cout << "|        Choose one of the options       |\n";
-        cout << "|________________________________________|\n";
-        cout << "|      1. STUDENTS:                      |\n";
-        cout << "|      2. SCHEDULE:                      |\n";
-        cout << "|      3. REGISTERED STUDENTS:           |\n";
-        cout << "|      4. REQUEST:                       |\n";
-        cout << "|      5. SAVE AND QUIT:                 |\n";
-        cout << "|      6. QUIT WITHOUT SAVING:           |\n";
-        cout << "|________________________________________|\n";
-        cout << "Your option:";
-        cin >> opção;
-
-
-        switch(opção){
-
-            case 1:
-                MenuStudents(objStudent);
-                wait(objStudent);
-                break;
-           // case 2:
-
-                //MenuTurmas();
-               // MenuStudents();
-               // mainMenu();
-                //break;
-        case 2:
-            MenuSchedule();
+    char op;
+    cout << "__________________________________________\n";
+    cout << "|                MainMenu                |\n";
+    cout << "|        Choose one of the options       |\n";
+    cout << "|________________________________________|\n";
+    cout << "|      1. STUDENTS:                      |\n";
+    cout << "|      2. SCHEDULE:                      |\n";
+    cout << "|      3. REGISTERED STUDENTS:           |\n";
+    cout << "|      4. REQUEST:                       |\n";
+    cout << "|      \033[30m5. SAVE AND QUIT:\033[0m                 |\n";
+    cout << "|      \033[31m6. QUIT WITHOUT SAVING:\033[0m           |\n";
+    cout << "|________________________________________|\n";
+    cout << "Your option:";
+    cin >> op;
+    switch(op)
+    {
+        case '1':
+            MenuStudents(objStudent);
             wait(objStudent);
             break;
-        case 3:
+        case '2':
+            MenuSchedule(objStudent);
+            wait(objStudent);
+            break;
+        case '3':
             resgisteredStudents(objStudent);
             wait(objStudent);
             break;
-        case 4:
-
-            request();
+        case '4':
+            request(objStudent);
             mainMenu(objStudent);
             wait(objStudent);
             break;
-        case 5:
-            // chamar função que guarda requests  se houver requests
+        case '5':
+            saveStudent(objStudent);
             break;
-        case 6:
+        case '6':
             break;
-
+        default:
+            cout << "Invalid Option..." << endl;
+            wait(objStudent);
+            break;
     }
 }
 
@@ -91,7 +85,6 @@ void Menu::readStudents(Data &obj){
     input.close();
 }
 
-
 void Menu::MenuStudents(Data &obj) {
     //readStudents(obj);
     cout << "__________________________________________\n";
@@ -104,106 +97,66 @@ void Menu::MenuStudents(Data &obj) {
     cout << "|      4.Search by Year                  |\n";
     cout << "|      5.At least n Uc's:                |\n";
     cout << "|      6.UCs with more Students:         |\n";
+    cout << "|                                        |\n";
+    cout << "|          \033[31mPress B to go back.\033[0m           |\n";
     cout << "|________________________________________|\n";
     cout << "Your option:";
-    int option = 0;
-    std:: cin >> option;
-
-    /*while(true){
-        switch(option){
-            case 1:
-            {
-                obj.printAllStudents();
-                break;
-            }
-            case 2:
-            {
-                string uc_;
-                cout << "Insert UC:";
-                cin >> uc_;
-                obj.searchByUc(uc_);
-                break;
-            }
-            case 3:
-            {
-                string class_;
-                cout << "Insert Class: ";
-                cin >> class_;
-                obj.searchByClass(class_);
-                break;
-            }
-            case 4:
-            {
-                char year;
-                cout << "Insert year:";
-                cin >> year;
-                int n = 0;
-                obj.searchByYear(year,n, 0);
-                break;
-            }
-            case 5:
-            {
-                int o;
-                cout << "Number of n Uc's:";
-                cin >> o;
-                obj.UCcount(obj);
-                obj.nNumbers(o);
-                break;
-            }
-            case 6:
-                int n;
-                cout << "Number of Uc's: ";
-                cin >> n;
-                obj.nUcsWithStudentsPerUc(n);
-                break;
-        }
-    }*/
-    if(option == 1){
+    char c;
+    cin >> c;
+    switch (c){
+        case '1': {
+            //teste1(obj);
             obj.printAllStudents();
-    }
-    else if (option == 2){
+            break;
+        }
+        case '2': {
             string uc_;
-            cout << "Insert UC: ";
+            cout << "Insert UC:";
             cin >> uc_;
             obj.searchByUc(uc_);
-
-    }
-    else if (option == 3){
-            string class_, uc;
+            break;
+        }
+        case '3': {
+            string class_;
             cout << "Insert Class: ";
             cin >> class_;
+            string uc;
             cout << "Insert UC: ";
             cin >> uc;
             obj.searchByClass(class_, uc);
-
+            break;
+        }
+        case '4': {
+            char year;
+            cout << "Insert year:";
+            cin >> year;
+            int n = 0;
+            obj.searchByYear(year, n, 0);
+            break;
+        }case '5': {
+            int o;
+            cout << "Number of n Uc's:";
+            cin >> o;
+            obj.UCcount(obj);
+            obj.nNumbers(o);
+            break;
+        }
+        case '6':
+            int n;
+            cout << "Number of Uc's: ";
+            cin >> n;
+            obj.nUcsWithStudentsPerUc(n);
+            break;
+        case 'B':
+            break;
+        default:
+            cout << "Invalid Option..." << endl;
+            MenuStudents(obj);
+            break;
     }
-  else if (option == 4){
-        char year;
-        cout << "Insert year:";
-        cin >> year;
-        int n = 0;
-        obj.searchByYear(year,n, 0);
-    }
-    else if(option == 5){
-        int o;
-        cout << "Number of n Uc's:";
-        cin >> o;
-        obj.UCcount(obj);
-        obj.nNumbers(o);
-    }
-    else if (option == 6)
-    {
-        int n;
-        cout << "Number of Uc's: ";
-        cin >> n;
-        obj.nUcsWithStudentsPerUc(n);
-    }
-
-    
 }
 
-
-void Menu::MenuSchedule() {
+void Menu::MenuSchedule(Data &obj) {
     int opção = 0;
     cout << "__________________________________________\n";
     cout << "|              ScheduleMenu              |\n";
@@ -308,50 +261,7 @@ void Menu::Stfind() {
 }
 
 
-        /*void Menu::MenuTurmas(){
-            cout << "__________________________________________\n";
-            cout << "|              ClassesMenu               |\n";
-            cout << "|________________________________________|\n";
-            readTurmas();
-
-        }*/
-        /*void Menu::readTurmas(){
-                vector<Slot> schedule;
-                ifstream input("../input/classes.csv");
-                if(!input.is_open()){
-                    cout << "Error: Unable to open file 1 \n";
-                }
-                string line;
-                getline (input, line);
-                while(getline(input, line)){
-                    istringstream in (line);
-                    string classCode, ucCode, weekday, start, duration, type;
-                    getline(in,classCode, ',');
-                    getline(in, ucCode, ',');
-                    getline(in, weekday, ',');
-                    getline(in,start,',');
-                    getline(in, duration, ',');
-                    getline(in, type, ',');
-
-                    UC u1 = UC(ucCode);
-                    Class c1 = Class(classCode);
-                    pair<UC,Class> copy = Student::createpair(u1, c1);
-                    classuc.push_back(copy);
-                    Slot slot = Slot(classCode, weekday,start,duration,type);
-                    schedule.push_back(slot);
-                }
-                string cl;
-                cin >> cl;
-                Schedule::createvector(classuc, schedule, cl);
-
-                for (auto x: classuc){
-                    cout << x.first << " " << x.second <<endl;
-                }
-                for (auto y: schedule){
-                    cout << y.getccode() << " " << y.getweekday() << " " << y.getstart() << " " << y.getduration() << " " << y.gettype() << endl;}
-                input.close();
-            }*/
-    void Menu::MenuUC(){
+    /*void Menu::MenuUC(){
 
         cout << "__________________________________________\n";
         cout << "|                 UCMenu                 |\n";
@@ -379,8 +289,9 @@ void Menu::Stfind() {
         }
         input.close();
 
-}
-void Menu::resgisteredStudents(Data &obj){
+}*/
+
+void Menu::resgisteredStudents(Data &obj) {
 
     cout << "__________________________________________\n";
     cout << "|          Registered Students           |\n";
@@ -394,28 +305,25 @@ void Menu::resgisteredStudents(Data &obj){
 
     int option = 0;
     cin >> option;
-    if(option == 1){
+    if (option == 1) {
         cout << "Insert UC: ";
         string uc;
         cin >> uc;
-        cout << obj.ucOccupation(uc);
-    }
-    else if (option == 2){
+        cout << obj.ucOccupation(uc) << std::endl;
+    } else if (option == 2) {
         cout << "Insert Class: ";
         string class_;
         cin >> class_;
-        cout << obj.classOccupation(class_);
-    }
-    else if(option == 3){
+        cout << obj.classOccupation(class_) << std::endl;
+    } else if (option == 3) {
         cout << "Insert Year: ";
         char year;
         cin >> year;
-        cout << obj.yearOccupation(year);
+        cout << obj.yearOccupation(year) << std::endl;
     }
 }
 
-
-void Menu:: request(){
+void Menu:: request(Data &obj){
 
     cout << "__________________________________________\n";
     cout << "|          Student Requests              |\n";
@@ -440,9 +348,17 @@ void Menu:: request(){
         cin >> new_uc;
 
     }
+    else if (option == 3){
+        string studentcode, uc;
+        cout << "Student Code: " << endl;
+        cin >> studentcode;
+        cout << "UC to remove: " << endl;
+        cin >> uc;
+        obj.requestRemoveUc(studentcode, uc);
+    }
 }
 
-void Menu::saveStudent(){
+void Menu::saveStudent(Data &obj){
                 ofstream output("../input/classes.csv");
                 output.clear();
                 output << "ClassCode,UcCode,Weekday,StartHour,Duration,Type\n";
