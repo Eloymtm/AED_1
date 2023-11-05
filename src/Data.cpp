@@ -275,90 +275,166 @@ void Data::requestAddUc(std::string studentCode ,std::string new_uc ) {
         }
     }
 }
-void Data::requestRemoveUc(std::string studentCode, std::string uc ){
-    std:: string upcode, name;
+
+
+
+
+void Data::requestAddClass(std::string studentCode ,std::string new_class, std::string new_uc ) {
+    int ucs = ucsPerStudent(studentCode);
+    std::string studentName;
+    for (auto x: allStudents) {
+        if (studentCode == x.getupcode())
+            studentName = x.getname();
+    }
+
+    for (auto x: studentClasses) {
+        if (x.second.getupcode() == studentCode and x.first.getUcCode() == new_uc) {
+            std::cout << "Request Denied: Student already enrolled in this another Class of this UC" << std::endl;
+            return;
+        }
+    }
+    bool studentExists = 0;
+    for (auto x: allStudents) {
+        if (x.getupcode() == studentCode)
+            studentExists = 1;
+    }
+    if (!studentExists)
+        std::cout << "Request Denied: Student not found" << std::endl;
+
+    int spaceInClass = 0;
+    /*std::list<ClassAndUC> availableClasses;
+    //student can only be enrolled to class if there are less than 30 students in that class
+    for (auto x: mStudentsPerClass) {
+        if (x.first.getUcCode() == new_uc and x.second < 30) {
+            availableClasses.push_back(x.first);
+            spaceInClass++;
+        }
+    }*/
+    for (auto x: mStudentsPerClass) {
+        if (x.first.getUcCode() == new_uc and x.first.getClassCode() == new_class and x.second < 30) {
+            spaceInClass++;
+        }
+        if (spaceInClass == 0) {
+            std::cout << "Request Denied: Class without vacancies " << std::endl;
+            return;
+        }
+        //std:: cout << availableClasses.front().getClassCode() << std::endl;
+        Student S = Student(studentName, studentCode);
+        ClassAndUC C = ClassAndUC(new_class, new_uc);
+        addStudentsClasses(C, S);
+        std::cout << "Request accepted" << std::endl;
+
+        for (auto &x: studentsPerUC) {
+            if (x.first.getUC() == new_uc) {
+                x.second++;
+                break;
+            }
+        }
+        for (auto &x: mStudentsPerUC) {
+            if (x.first.getUC() == new_uc) {
+                x.second++;
+                break;
+            }
+        }
+    }
+}
+
+
+
+
+void Data::requestRemoveClass(std::string studentCode, std::string uc, std::string classCode) {
+    std::string upcode, name;
     std::string classcode, uccode;
-    for (auto x: studentClasses){
-        if(x.first.getUcCode()== uc and x.second.getupcode() == studentCode)
-        {
-            classcode =x.first.getClassCode();
+    for (auto x: studentClasses) {
+        if (x.first.getUcCode() == uc and x.first.getClassCode() == classCode and
+            x.second.getupcode() == studentCode) {
+            classcode = x.first.getClassCode();
             uccode = x.first.getUcCode();
-            upcode =x.second.getupcode();
+            upcode = x.second.getupcode();
             name = x.second.getname();
         }
     }
     ClassAndUC keyToRemove = ClassAndUC(classcode, uccode);
-    Student S = Student(name , upcode);
+    Student S = Student(name, upcode);
     auto range = studentClasses.equal_range(keyToRemove);
     for (auto it = range.first; it != range.second; ++it) {
-        if (it->second.getccode()== S.getccode() ) {
+        if (it->second.getccode() == S.getccode()) {
             studentClasses.erase(it);
 
             break;
         }
     }
-    for (auto &x : studentsPerUC){
-        if(x.first.getUC() == uc){
+    for (auto &x: studentPerClass) {
+        if (x.first.getClassCode() == classCode, x.first.getUcCode() == uc) {
             x.second--;
             break;
         }
     }
-    for (auto &x : mStudentsPerUC){
-        if(x.first.getUC() == uc){
+    for (auto &x: mStudentsPerClass) {
+        if (x.first.getUcCode() == uc and x.first.getClassCode() == classCode) {
+            x.second--;
+            break;
+        }
+    }
+    for (auto &x: studentsPerUC) {
+        if (x.first.getUC() == uc) {
+            x.second--;
+            break;
+        }
+    }
+    for (auto &x: mStudentsPerUC) {
+        if (x.first.getUC() == uc) {
             x.second--;
             break;
         }
     }
 }
 
-void Data::requestRemoveClass(std::string studentCode, std::string uc, std:: string classCode){
-    std:: string upcode, name;
+
+
+void Data::requestRemoveUc(std::string studentCode, std::string uc) {
+    std::string upcode, name;
     std::string classcode, uccode;
-    for (auto x: studentClasses){
-        if(x.first.getUcCode()== uc and x.first.getClassCode() == classCode and x.second.getupcode() == studentCode)
-        {
-            classcode =x.first.getClassCode();
+    for (auto x: studentClasses) {
+        if (x.first.getUcCode() == uc and x.second.getupcode() == studentCode) {
+            classcode = x.first.getClassCode();
             uccode = x.first.getUcCode();
-            upcode =x.second.getupcode();
+            upcode = x.second.getupcode();
             name = x.second.getname();
         }
     }
     ClassAndUC keyToRemove = ClassAndUC(classcode, uccode);
-    Student S = Student(name , upcode);
+    Student S = Student(name, upcode);
     auto range = studentClasses.equal_range(keyToRemove);
     for (auto it = range.first; it != range.second; ++it) {
-        if (it->second.getccode()== S.getccode() ) {
+        if (it->second.getccode() == S.getccode()) {
             studentClasses.erase(it);
 
             break;
         }
     }
-    for (auto &x : studentPerClass){
-        if(x.first.getClassCode() == classCode, x.first.getUcCode() == uc){
+    for (auto &x: studentsPerUC) {
+        if (x.first.getUC() == uc) {
             x.second--;
             break;
         }
     }
-    for (auto &x : mStudentsPerClass){
-        if(x.first.getUcCode() == uc and x.first.getClassCode() == classCode){
+    for (auto &x: mStudentsPerUC) {
+        if (x.first.getUC() == uc) {
             x.second--;
             break;
         }
     }
-    for (auto &x : studentsPerUC){
-        if(x.first.getUC() == uc){
-            x.second--;
+    for (auto &x: studentPerClass) {
+        if (x.first.getUcCode() == uc) {
+            x.second++;
             break;
         }
     }
-    for (auto &x : mStudentsPerUC){
-        if(x.first.getUC() == uc){
-            x.second--;
+    for (auto &x: mStudentsPerClass) {
+        if (x.first.getUcCode() == uc) {
+            x.second++;
             break;
         }
     }
 }
-
-
-//void addUcClass(UC uc, Class class_)
-

@@ -319,6 +319,7 @@ void Menu:: request(Data &obj){
 
 
     }
+
     else if (option == 3){
         string studentcode, uc;
         cout << "Student Code: " << endl;
@@ -328,6 +329,7 @@ void Menu:: request(Data &obj){
         obj.addRequest( "Student " + studentcode + " resquested removal of UC " + uc);
         obj.requestRemoveUc(studentcode, uc);
     }
+
     else if (option == 4){
         string studentcode, uc, classCode;
         cout << "Student Code: " << endl;
