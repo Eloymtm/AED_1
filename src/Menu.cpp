@@ -324,6 +324,17 @@ void Menu:: request(Data &obj){
         obj.addRequest( "Student " + studentcode + " resquested removal of UC " + uc);
         obj.requestRemoveUc(studentcode, uc);
     }
+    else if (option == 4){
+        string studentcode, uc, classCode;
+        cout << "Student Code: " << endl;
+        cin >> studentcode;
+        cout << "UC: " << endl;
+        cin >> uc;
+        cout << "Class to remove: " << endl;
+        cin >> classCode;
+        obj.addRequest( "Student " + studentcode + " resquested removal of Class " + classCode + " from UC " + uc);
+        obj.requestRemoveClass(studentcode, uc, classCode);
+    }
     else if(option == 7){
         obj.printRequest();
     }
